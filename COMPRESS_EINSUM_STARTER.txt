@@ -1,0 +1,273 @@
+NNN=036 or 039
+
+# Task
+
+You are compressing the NeuroGolf champion for task{NNN}. Its champion builder is `skills-offline/solutions_py/task{NNN}.py` in your Sources — it is ALREADY a single input→output Einsum with memory=0. Build it (`python skills-offline/solutions_py/task{NNN}.py champ.onnx`), read its params p (memory=0, so score = 25 - ln(p)), and IMPROVE that builder to MINIMIZE params. Keep the graph ONE input→output Einsum with memory=0 — do NOT add ops or non-zero memory. Before submitting, RUN `skills-offline/evaluate/scripts/evaluate.py` and confirm the candidate is CORRECT on the known/public examples. Save the downloadable file as `task{NNN}_m0_p{params}.onnx` (params from static graph inspection). The full method follows.
+
+--------------------------------------------------------------------------------
+
+# Goal
+
+Improve the Python ONNX builder for task{NNN} to minimize:
+
+    cost = memory_bytes + params
+
+TARGET — DO NOT STOP SHORT: beat the current champion by +1.0 points (reach champion_score + 1.0),
+or get as far toward it as you possibly can. DO NOT STOP until the target is reached or you have
+genuinely exhausted materially-different approaches. "The champion is already optimal / no further
+trim found / this route is infeasible" is NOT a valid stopping point — treat it as not-solved-yet
+(a lazy stop, an under-explored representation, a too-weak feature basis, or a missed trick) and try
+another DISTINCT family. ALWAYS reason from FIRST PRINCIPLES: re-derive the task's rule and the
+cheapest construction yourself; never declare a route dead without exhausting genuinely different
+ones. (Sparse-stored initializers are a dead end — the scorer rejects them.) Try aggressive rewrites
+to prevent getting stuck in local optima.
+
+Store the downloadable files with the suffix _m{memory}_p{params}.onnx.
+
+# Do NOT repeat a verified-zero attempt
+
+The graded test uses HIDDEN fresh samples, NOT the public examples. Passing the known/public
+cases is necessary but NOT sufficient — a table/lookup keyed to the public inputs generalizes to
+nothing and scores ZERO. Your Sources include the folder
+`skills-offline/kaggle_hidden_zero_candidates/`, which holds ONNX from PAST attempts that passed
+the public examples but were VERIFIED to score 0 on the hidden test (memorizers / overfit).
+
+- BEFORE finalizing task{NNN}, check `skills-offline/kaggle_hidden_zero_candidates/task{NNN}_*.onnx`.
+  If one exists, LOAD and INSPECT it (onnx / onnxruntime in your code tool), identify the
+  memorization / lookup structure that made it fail the hidden test, and do NOT reproduce that
+  approach — choose a genuinely DIFFERENT construction that computes the GENERAL task rule so it
+  generalizes to unseen inputs.
+- Never hard-code, index, or table-lookup the public examples. If your Einsum only works because it
+  encodes the specific public cases, it is a verified-zero pattern — rebuild it as the real rule.
+
+# Below are some tricks you can use
+
+## 1. Reuse The Same Initializer Name
+
+ONNX stores an initializer once. If an `Einsum` node has:
+
+```text
+["E", "E", "E", ..., "E"]
+```
+
+then `E` is charged once, even if it appears hundreds of times in the node
+input list. Each occurrence can use different einsum subscripts.
+
+This is the central single-node einsum trick.
+
+Examples:
+
+- `task214`: `B1(2)` is reused 399 times; total params are only 64.
+- `task106`: `Gate(2x2)` is reused 307 times; total params are 68.
+- `task010`: one `E(10x2)` table is reused 259 times; total params are 20.
+
+When to use it: if you are about to create several similar constants, try one
+shared constant referenced many times with different labels.
+
+## 2. Reuse The Graph Input
+
+The graph input is free. It can appear multiple times as separate einsum
+operands.
+
+Example:
+
+```text
+task067: bchw,bdwh->bchw
+```
+
+Node inputs are just:
+
+```text
+["input", "input"]
+```
+
+This gives `p0`. It is useful when the output can be expressed as an
+interaction, mask, equality, or projection over the input itself.
+
+## 3. Spend Equation Length To Save Params
+
+Equation string length and operand count are not charged as params. This makes
+ugly equations valuable if they remove stored tensors.
+
+Examples:
+
+- `task151`: `316 -> 96`, operands `25 -> 191`, max reuse `8 -> 156`.
+- `task022`: `548 -> 172`, operands `20 -> 93`, max reuse `5 -> 34`.
+- `task175`: `228 -> 46`, operands `14 -> 58`, max reuse `4 -> 28`.
+
+Concrete bucket equations:
+
+`task175` before, `p228`, 14 operands:
+
+```text
+narw,nbwr,ndzz,ak,bk,dk,ck,ks,ri,wu,siu,rj,wv,svj->ncrw
+```
+
+`task175` after, `p46`, 58 operands:
+
+```text
+mBC,xB,yC,mDF,xD,yF,nxru,nywu,vij,ai,cj,vkl,ak,cl,narw,vps,bp,cs,vtA,bt,cA,nbwr,v,fGh,aG,hg,gI,IH,bH,narw,nbwr,qJK,cJ,dK,qLM,dL,cM,oNO,dN,OP,cP,oQR,dQ,RS,cS,oTU,cT,UV,dV,oWX,cW,XY,dY,Emo,Efq,dZ,ce,ndzz->ncrw
+```
+
+The after equation is much longer, but it replaces three `10x5` color tables
+with `E(10x2)` plus tiny binary helpers.
+
+`task151` before, `p316`, 25 operands:
+
+```text
+nahu,a,ndhv,d,uM,vK,MKP,P,hH,rR,RHL,nepw,e,nfgw,f,pX,gY,XYQ,Q,wW,cC,CWT,LT,njrc,oj->norc
+```
+
+`task151` after, `p96`, 191 operands starts like this:
+
+```text
+kx,kx,kx,kx,kx,kx,kx,kx,kx,kx,...,nlrx,kl,uAB,Ah,BaC,Cr,...,ndhw->nohw
+```
+
+The important part is the repeated `kx` and `kz` operands: one small basis is
+replayed many times instead of storing a larger case table.
+
+When to use it: if a dense table is doing many separate cases, expand those
+cases into many einsum operands that reuse a small basis.
+
+## 4. Factor Dense Lookup Tables
+
+Large tables are usually the best first target. Replace them with low-rank
+bases, shared transitions, separable row/column factors, and small adapters.
+
+Common replacements:
+
+```text
+30x30      -> 30xk + small k-relations
+10x5       -> 10x2 + binary selectors
+2x30x30    -> 30x30 or 30xk factors
+18x18/30   -> 18x30 + small relation vectors
+kx10x10    -> smaller transition + phase/start/stop gates
+10x10      -> row/column factors + tiny coupling
+```
+
+Bucket examples:
+
+- `task004`: two `30x30` tables become `B0/B1(30x4)`, `KC_GATE(10x30)`,
+  and small gate tensors: `1995 -> 818`.
+- `task092`: `side(30x30)` becomes several `30x2/30x4` bases and small
+  relation tensors: `980 -> 381`.
+- `task338`: early `2x30x30` payloads shrink through lower-dimensional forms.
+- `task368`: `R(4x10x10)=400` becomes `Step(2x10x10)=200` plus gates, then
+  `Start(10x10)=100` folds into `ZStart(2x10)=20`: `832 -> 648 -> 540`.
+- `task187`: `Tail(2x10x10)=200` becomes smaller color/tail factors such as
+  `Atail(2x10x3)=60`, `Btail(3x10)=30`, then `C(10x3)` and `D(2x3)`.
+
+When to use it: sort initializers by element count; attack the largest one
+first. Treat any full spatial table, phase stack, transition table, or
+start/tail mask as suspicious before accepting it as irreducible.
+
+## 5. Split A Big Selector Into Smaller Axes
+
+Sometimes the dense table is not merely low-rank; it is a product of
+independent axes. Split it into multiple smaller selector tensors and let the
+einsum recombine them.
+
+Clean example:
+
+```text
+task173: S(3x30x25) -> S1(3x30x5) + S2(3x30x5)
+```
+
+That step is `2592 -> 1254`. The two smaller selectors cost 900 total instead
+of 2250, and the equation handles the recombination.
+
+When to use it: if one axis looks like a Cartesian product, family/role split,
+color/position split, or two independent decisions packed into one dimension.
+
+## 6. Collapse Role-Specific Tables Into One Shared Basis
+
+Many candidates start with separate tensors for separate roles. A better
+version often has one shared basis and tiny role adapters.
+
+Examples:
+
+- `task369`: `U(5x30)` and `P(2x30)` are replaced by `F(3x30)` plus adapters:
+  `292 -> 144`.
+- `task302`: several coordinate/color tensors become `F(30x2)`, `Z(6x10)`,
+  `A(6x2)`, `B(2x6)`: `284 -> 144`.
+- `task162`: many role-specific constants collapse into `W(18x30)`,
+  `E(10x4)`, and adapters: `1072 -> 600`.
+
+When to use it: look for several tensors with similar leading dimensions, such
+as multiple `30xk`, `10xk`, or `2xk` tables.
+
+## 7. Replace Color Tables With Small Encodings
+
+Color dimensions often have only a few useful predicates: zero/nonzero,
+specific color, equality, selected pair, or binary group. A full `10x5` or
+`10x10` table is often overkill.
+
+Common replacements:
+
+```text
+10x5  -> 10x2 + 2x2 / 2x2x2 helpers
+10x10 -> 10x2 or 10x3 + tiny relation tensor
+```
+
+Examples:
+
+- `task175`: three `10x5` color tables are replaced by `E(10x2)` and small
+  position/relation helpers: `228 -> 46`.
+- `task151`: `A(10x10)` disappears in the `316 -> 96` rewrite.
+- `task022`: color handling moves into `E(10x3)` plus tiny vectors.
+
+When to use it: if a color table is mostly encoding equality, nonzero, or a
+small partition, compress it into a low-cardinality basis.
+
+## 8. Sweep Latent Width Downward
+
+After a factored model is correct, the chosen latent width is often too large.
+Try smaller widths and verify exact behavior.
+
+Useful sweep values:
+
+```text
+k = 10, 8, 6, 5, 4, 3, 2
+```
+
+Examples:
+
+- `task302`: `144 -> 120 -> 110 -> 104 -> 100`.
+- `task338`: large width representations shrink down toward current `p366`.
+- `task173`: `1254 -> 1251` after the main split.
+
+When to use it: after any low-rank rewrite. The first correct width is rarely
+minimal.
+
+## 9. Delete Or Fold Tiny Helpers
+
+At low params, removing a 2-element or 4-element helper can be a major score
+gain. Do not dismiss these as small.
+
+Examples:
+
+- `task175`: `46 -> 44 -> 42 -> 40`.
+- `task214`: `72 -> 68 -> 64`.
+- `task106`: `84 -> 68`.
+- `task231`: the archive contains `93 -> 90`.
+
+When to use it: inspect every `2`, `2x2`, `2x2x2`, scalar, or small vector.
+Try folding it into an existing reused basis or replacing it with extra
+einsum operands.
+
+## 10. Prefer One Reused Tensor Over Duplicate Equal Data
+
+If two initializers encode similar information, it is often better to keep one
+and reference it multiple ways. The equation can distinguish roles by
+subscripts; the initializer does not need to be duplicated.
+
+This is slightly different from trick 1: trick 1 says reuse is free after you
+have a tensor; this trick says to redesign the representation so multiple
+logical tables become one physical tensor.
+
+Examples:
+
+- `task349`: 33 initializers shrink to 16 in the `3840 -> 2351` rewrite.
+- `task162`: 16 initializers shrink to 5 in the `1072 -> 600` rewrite.
+- `task302`: 7 initializers shrink to 4 in the `284 -> 144` rewrite.

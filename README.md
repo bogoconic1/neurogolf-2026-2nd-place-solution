@@ -6,4 +6,4 @@ This is Geremie's part for the 2nd place solution for https://www.kaggle.com/com
 
 ## Architecture
 
-![NeuroGolf 2026 driver architecture](neurogolf_architecture.png)
+![NeuroGolf 2026 driver architecture](architecture_v2.png)

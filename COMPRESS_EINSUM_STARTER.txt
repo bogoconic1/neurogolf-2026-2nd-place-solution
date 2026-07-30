@@ -2,7 +2,7 @@ NNN=036 or 039
 
 # Task
 
-You are compressing the NeuroGolf champion for task{NNN}. Its champion builder is `skills-offline/solutions_py/task{NNN}.py` in your Sources — it is ALREADY a single input→output Einsum with memory=0. Build it (`python skills-offline/solutions_py/task{NNN}.py champ.onnx`), read its params p (memory=0, so score = 25 - ln(p)), and IMPROVE that builder to MINIMIZE params. Keep the graph ONE input→output Einsum with memory=0 — do NOT add ops or non-zero memory. Before submitting, RUN `skills-offline/evaluate/scripts/evaluate.py` and confirm the candidate is CORRECT on the known/public examples. Save the downloadable file as `task{NNN}_m0_p{params}.onnx` (params from static graph inspection). The full method follows.
+You are compressing the NeuroGolf champion for task{NNN}. Its champion builder is `skills-offline/solutions_py/task{NNN}.py` in your Sources — it is ALREADY a single input→output Einsum with memory=0. Build it (`python skills-offline/solutions_py/task{NNN}.py champ.onnx`), read its params p (memory=0, so score = 25 - ln(p)), and IMPROVE that builder to MINIMIZE params. Keep the graph ONE input→output Einsum with memory=0 — do NOT add ops or non-zero memory. Before submitting, RUN `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN}` and confirm the candidate passes 100% of the shipped examples — if it passes, submit it. Save the downloadable file as `task{NNN}_m0_p{params}.onnx` (params from static graph inspection). The full method follows.
 
 --------------------------------------------------------------------------------
 
@@ -24,21 +24,14 @@ to prevent getting stuck in local optima.
 
 Store the downloadable files with the suffix _m{memory}_p{params}.onnx.
 
-# Do NOT repeat a verified-zero attempt
+# Correctness is judged by the shipped examples
 
-The graded test uses HIDDEN fresh samples, NOT the public examples. Passing the known/public
-cases is necessary but NOT sufficient — a table/lookup keyed to the public inputs generalizes to
-nothing and scores ZERO. Your Sources include the folder
-`skills-offline/kaggle_hidden_zero_candidates/`, which holds ONNX from PAST attempts that passed
-the public examples but were VERIFIED to score 0 on the hidden test (memorizers / overfit).
-
-- BEFORE finalizing task{NNN}, check `skills-offline/kaggle_hidden_zero_candidates/task{NNN}_*.onnx`.
-  If one exists, LOAD and INSPECT it (onnx / onnxruntime in your code tool), identify the
-  memorization / lookup structure that made it fail the hidden test, and do NOT reproduce that
-  approach — choose a genuinely DIFFERENT construction that computes the GENERAL task rule so it
-  generalizes to unseen inputs.
-- Never hard-code, index, or table-lookup the public examples. If your Einsum only works because it
-  encodes the specific public cases, it is a verified-zero pattern — rebuild it as the real rule.
+Run `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0`.
+It grades your ONNX against the examples shipped in
+`skills-offline/evaluate/scripts/neurogolf-2026/task{NNN}.json` (train + test + arc-gen) and reports
+per-split pass/fail plus memory_bytes / params / score. A candidate is CORRECT iff it passes 100% of those
+examples. **If it passes, it's good — submit it.** Feel free to use ANY construction you like, as long as it
+passes every shipped example at the highest score you can reach.
 
 # Below are some tricks you can use
 

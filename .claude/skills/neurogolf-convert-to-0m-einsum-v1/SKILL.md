@@ -65,8 +65,11 @@ compress color tables to 10×2/10×3; sweep latent width down; delete tiny helpe
 - **Produce ONE input→output `Einsum`, memory=0** (emit `output` directly). The candidate must be a sincere,
   CORRECT solver (re-express the task rule, do not passthrough/metric-hack) and stay a single Einsum with
   memory 0; beat the champion's `m + p` on params.
-- **Genuinely SOLVE — run `evaluate/scripts/evaluate.py`** and be correct on the known/public examples before
-  submitting. You need not perfectly pass *fresh*, but never submit an obviously-wrong / identity graph.
+- **Genuinely SOLVE — run
+  `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0`** and
+  pass 100% of the examples shipped in `skills-offline/evaluate/scripts/neurogolf-2026/task{NNN}.json`
+  (train + test + arc-gen). **That is the whole bar — if it passes, ship it**, using any construction that
+  reaches the highest score. Never submit an obviously-wrong / identity graph.
 - **Do NOT use sparse-stored initializers** — the scorer rejects them (a dead end per the playbook).
 - **Every emitted candidate MUST be a downloadable ONNX named `task{NNN}_m0_p{params}.onnx`** (`m0` because
   memory stays 0). `params` = total initializer element count from **static graph inspection only** — no
@@ -77,9 +80,9 @@ compress color tables to 10×2/10×3; sweep latent width down; delete tiny helpe
   `/leaderboard_api` DB read; re-read per pass). Claimed ≤ champion → do NOT download; log why. Markdown is
   ALWAYS harvested every round, regardless of score.
 - **Folder routing at harvest** (the session's own confidence, NOT score):
-  - `safe/`: `evaluate` ran AND the candidate is correct on the known examples.
-  - `unsafe/`: evaluated but imperfect on fresh (a genuine attempt that does not fully generalize).
-    NEVER route a known-wrong passthrough here — do not submit those at all.
+  - `safe/`: passes 100% of the shipped examples (`evaluate.py`).
+  - `unsafe/`: fails >=1 shipped example (a genuine attempt that isn't fully correct) — still worth a cheaper
+    submit. NEVER route a known-wrong passthrough here — do not submit those at all.
   - `invalid`/`timeout` are assigned only by the submitter/reconciler from the Space verdict.
 - Send **10 total messages per task**: Round 1 plus nine follow-up nudges. Track the sent count in the
   session mapping `Rounds` column (N/10). Once a task reaches `10/10`, harvest any remaining artifacts, mark
@@ -186,7 +189,7 @@ Round 1 prompt — **the message IS the file `CONVERT_0M_STARTER.txt`** (repo ro
 Round 2+ nudge:
 
 ```text
-Try harder! there is a new baseline uploaded — rebuild the champion skills-offline/solutions_py/task{NNN}.py and read its memory m and params p, then convert task{NNN} into a SINGLE input→output Einsum emitting `output` directly (memory=0) with params BELOW m+p (aim for +1.0, but ANY beat counts). You stopped short: re-derive the task rule from FIRST PRINCIPLES and try a genuinely DISTINCT family (if skills-offline/kaggle_hidden_zero_candidates/task{NNN}_*.onnx exists it is a VERIFIED-ZERO past attempt — study it and do NOT reproduce its structure; the graded test is hidden fresh samples, so a lookup keyed to the public examples scores 0). Concrete moves (re-apply the param-golf playbook you were given in round 1): sweep the latent width LOWER (k=8,6,5,4,3,2 — the first correct width is rarely minimal); factor the largest dense table into a low-rank basis + adapters; collapse role-specific tables into ONE shared basis; compress any color table to 10x2/10x3; expand the equation / reuse ONE initializer name harder to DELETE a stored tensor; delete or fold every tiny 2- or 4-element helper. Keep it ONE input→output Einsum with memory=0, still CORRECT (run skills-offline/evaluate/scripts/evaluate.py), no sparse initializers. ALWAYS save a downloadable ONNX named task{NNN}_m0_p{params}.onnx (params from static inspection) with params below m+p, plus a short markdown (champion m+p, your p, tricks used, equation). Try aggressive rewrites to prevent getting stuck in local optima.
+Try harder! there is a new baseline uploaded — rebuild the champion skills-offline/solutions_py/task{NNN}.py and read its memory m and params p, then convert task{NNN} into a SINGLE input→output Einsum emitting `output` directly (memory=0) with params BELOW m+p (aim for +1.0, but ANY beat counts). You stopped short: re-derive the task rule from FIRST PRINCIPLES and try a genuinely DISTINCT family. Concrete moves (re-apply the param-golf playbook you were given in round 1): sweep the latent width LOWER (k=8,6,5,4,3,2 — the first correct width is rarely minimal); factor the largest dense table into a low-rank basis + adapters; collapse role-specific tables into ONE shared basis; compress any color table to 10x2/10x3; expand the equation / reuse ONE initializer name harder to DELETE a stored tensor; delete or fold every tiny 2- or 4-element helper. Keep it ONE input→output Einsum with memory=0, still CORRECT — 100% of the shipped examples via `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0` (that is the whole bar) — no sparse initializers. ALWAYS save a downloadable ONNX named task{NNN}_m0_p{params}.onnx (params from static inspection) with params below m+p, plus a short markdown (champion m+p, your p, tricks used, equation). Try aggressive rewrites to prevent getting stuck in local optima.
 ```
 
 Scorer nudge (only if the Space rejected the last ONNX as unloadable/malformed):

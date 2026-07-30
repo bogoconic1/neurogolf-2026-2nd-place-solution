@@ -1,6 +1,6 @@
 # Task
 
-You are converting the NeuroGolf champion for task{NNN} into a SINGLE, MEMORY-0 Einsum that BEATS it. The current champion (`skills-offline/solutions_py/task{NNN}.py` in your Sources) is NOT memory-0. Read it to understand WHAT the task computes (its rule), but do NOT reuse its non-0m structure — you must produce a NEW graph that is ONE input→output `Einsum` emitting the graph tensor `output` DIRECTLY. A single output-direct Einsum has memory=0 (the `output` tensor is excluded from activation memory). NeuroGolf score = 25 - ln(memory + params); with memory=0 your score = 25 - ln(params). Build the champion and read its memory m and params p; you BEAT it when your params < (m + p) — you are dropping the champion's WHOLE memory term, so target params below m+p (aim +1.0, but ANY beat counts). Keep the graph a SINGLE input→output Einsum with memory=0 — NO helper ops, NO non-zero memory. Use the param-golf tricks below to push params as low as possible. RUN `skills-offline/evaluate/scripts/evaluate.py` and confirm the candidate is CORRECT on the known/public examples. Do NOT use sparse-stored initializers. Emit the downloadable file `task{NNN}_m0_p{params}.onnx` (memory IS 0 — a single output-direct Einsum). NEVER stop short / reason from FIRST PRINCIPLES. The param-golf method follows.
+You are converting the NeuroGolf champion for task{NNN} into a SINGLE, MEMORY-0 Einsum that BEATS it. The current champion (`skills-offline/solutions_py/task{NNN}.py` in your Sources) is NOT memory-0. Read it to understand WHAT the task computes (its rule), but do NOT reuse its non-0m structure — you must produce a NEW graph that is ONE input→output `Einsum` emitting the graph tensor `output` DIRECTLY. A single output-direct Einsum has memory=0 (the `output` tensor is excluded from activation memory). NeuroGolf score = 25 - ln(memory + params); with memory=0 your score = 25 - ln(params). Build the champion and read its memory m and params p; you BEAT it when your params < (m + p) — you are dropping the champion's WHOLE memory term, so target params below m+p (aim +1.0, but ANY beat counts). Keep the graph a SINGLE input→output Einsum with memory=0 — NO helper ops, NO non-zero memory. Use the param-golf tricks below to push params as low as possible. RUN `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN}` and confirm the candidate passes 100% of the shipped examples — if it passes, submit it. Do NOT use sparse-stored initializers. Emit the downloadable file `task{NNN}_m0_p{params}.onnx` (memory IS 0 — a single output-direct Einsum). NEVER stop short / reason from FIRST PRINCIPLES. The param-golf method follows.
 
 --------------------------------------------------------------------------------
 
@@ -22,21 +22,14 @@ to prevent getting stuck in local optima.
 
 Store the downloadable files with the suffix _m{memory}_p{params}.onnx.
 
-# Do NOT repeat a verified-zero attempt
+# Correctness is judged by the shipped examples
 
-The graded test uses HIDDEN fresh samples, NOT the public examples. Passing the known/public
-cases is necessary but NOT sufficient — a table/lookup keyed to the public inputs generalizes to
-nothing and scores ZERO. Your Sources include the folder
-`skills-offline/kaggle_hidden_zero_candidates/`, which holds ONNX from PAST attempts that passed
-the public examples but were VERIFIED to score 0 on the hidden test (memorizers / overfit).
-
-- BEFORE finalizing task{NNN}, check `skills-offline/kaggle_hidden_zero_candidates/task{NNN}_*.onnx`.
-  If one exists, LOAD and INSPECT it (onnx / onnxruntime in your code tool), identify the
-  memorization / lookup structure that made it fail the hidden test, and do NOT reproduce that
-  approach — choose a genuinely DIFFERENT construction that computes the GENERAL task rule so it
-  generalizes to unseen inputs.
-- Never hard-code, index, or table-lookup the public examples. If your Einsum only works because it
-  encodes the specific public cases, it is a verified-zero pattern — rebuild it as the real rule.
+Run `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0`.
+It grades your ONNX against the examples shipped in
+`skills-offline/evaluate/scripts/neurogolf-2026/task{NNN}.json` (train + test + arc-gen) and reports
+per-split pass/fail plus memory_bytes / params / score. A candidate is CORRECT iff it passes 100% of those
+examples. **If it passes, it's good — submit it.** Feel free to use ANY construction you like, as long as it
+passes every shipped example at the highest score you can reach.
 
 # Below are some tricks you can use
 

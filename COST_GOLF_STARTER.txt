@@ -1,3 +1,15 @@
+# Setup — RUN THIS CHECK FIRST, BEFORE ANY OTHER COMMAND
+
+`pip install onnx onnxruntime` CANNOT work here — there is no network access to PyPI. The wheels ship in your Sources instead. Before your first evaluate/builder call, check the stack and install it ONLY if it is missing:
+
+```bash
+python -c "import onnx, onnxruntime, numpy" 2>/dev/null || python skills-offline/wheels/install_offline.py
+```
+
+If the stack is already there this costs nothing and prints nothing — do NOT reinstall it. If the install runs and errors, report the error and STOP; a networked `pip install` is not a fallback, it cannot reach PyPI. If a later command dies with `ModuleNotFoundError: onnx` / `onnxruntime`, re-run the same line.
+
+--------------------------------------------------------------------------------
+
 # Task
 
 You are lowering the total cost of the NeuroGolf champion for task{NNN}. Its champion builder is `skills-offline/solutions_py/task{NNN}.py` in your Sources — the champion may be ANY op (Einsum, ConvTranspose, Conv, TfIdfVectorizer, the random-generator ops, memorizers, …). Build it (`python skills-offline/solutions_py/task{NNN}.py champ.onnx`) and read its cost = memory_bytes + params. GOAL: produce a graph whose total **cost = memory_bytes + params is BELOW the champion's** (NeuroGolf score = 25 - ln(memory + params)). You may REPLACE the champion with ANY construction and the final deliverable may carry memory — as long as memory + params < champion cost.

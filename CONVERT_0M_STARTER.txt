@@ -1,3 +1,15 @@
+# Setup — RUN THIS CHECK FIRST, BEFORE ANY OTHER COMMAND
+
+`pip install onnx onnxruntime` CANNOT work here — there is no network access to PyPI. The wheels ship in your Sources instead. Before your first evaluate/builder call, check the stack and install it ONLY if it is missing:
+
+```bash
+python -c "import onnx, onnxruntime, numpy" 2>/dev/null || python skills-offline/wheels/install_offline.py
+```
+
+If the stack is already there this costs nothing and prints nothing — do NOT reinstall it. If the install runs and errors, report the error and STOP; a networked `pip install` is not a fallback, it cannot reach PyPI. If a later command dies with `ModuleNotFoundError: onnx` / `onnxruntime`, re-run the same line.
+
+--------------------------------------------------------------------------------
+
 # Task
 
 You are converting the NeuroGolf champion for task{NNN} into a SINGLE, MEMORY-0 Einsum that BEATS it. The current champion (`skills-offline/solutions_py/task{NNN}.py` in your Sources) is NOT memory-0. Read it to understand WHAT the task computes (its rule), but do NOT reuse its non-0m structure — you must produce a NEW graph that is ONE input→output `Einsum` emitting the graph tensor `output` DIRECTLY. A single output-direct Einsum has memory=0 (the `output` tensor is excluded from activation memory). NeuroGolf score = 25 - ln(memory + params); with memory=0 your score = 25 - ln(params). Build the champion and read its memory m and params p; you BEAT it when your params < (m + p) — you are dropping the champion's WHOLE memory term, so target params below m+p (aim +1.0, but ANY beat counts). Keep the graph a SINGLE input→output Einsum with memory=0 — NO helper ops, NO non-zero memory. Use the param-golf tricks below to push params as low as possible. RUN `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN}` and confirm the candidate passes 100% of the shipped examples — if it passes, submit it. Do NOT use sparse-stored initializers. Emit the downloadable file `task{NNN}_m0_p{params}.onnx` (memory IS 0 — a single output-direct Einsum). NEVER stop short / reason from FIRST PRINCIPLES. The param-golf method follows.

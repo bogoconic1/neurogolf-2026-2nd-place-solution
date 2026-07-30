@@ -1,0 +1,36 @@
+from dsl import *
+from constants import *
+
+
+def solve_aba27056(I):
+    x1 = objects(I, T, F, T)
+    x2 = mapply(toindices, x1)
+    x3 = box(x2)
+    x4 = difference(x3, x2)
+    x5 = delta(x2)
+    x6 = position(x5, x4)
+    x7 = interval(ZERO, NINE, ONE)
+    x8 = lbind(multiply, x6)
+    x9 = apply(x8, x7)
+    x10 = lbind(shift, x4)
+    x11 = mapply(x10, x9)
+    x12 = fill(I, FOUR, x5)
+    x13 = fill(x12, FOUR, x11)
+    x14 = corners(x4)
+    x15 = ofcolor(x13, ZERO)
+    x16 = rbind(toobject, x13)
+    x17 = rbind(colorcount, ZERO)
+    x18 = chain(x17, x16, dneighbors)
+    x19 = matcher(x18, TWO)
+    x20 = rbind(adjacent, x2)
+    x21 = rbind(adjacent, x11)
+    x22 = fork(both, x20, x21)
+    x23 = compose(x22, initset)
+    x24 = sfilter(x15, x19)
+    x25 = sfilter(x24, x23)
+    x26 = product(x14, x25)
+    x27 = fork(subtract, last, first)
+    x28 = fork(shoot, first, x27)
+    x29 = mapply(x28, x26)
+    O = fill(x13, FOUR, x29)
+    return O

@@ -1,0 +1,183 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import numpy as np
+import onnx
+from onnx import AttributeProto, TensorProto, helper, numpy_helper
+
+
+TASK_ID = 'task092'
+TASK_NUM = 92
+KAGGLE = {'score': 19.091917, 'date': '2026-07-11'}
+MEMORY_BYTES = 0
+PARAMS = 368
+OUT = Path(__file__).with_suffix(".onnx")
+
+IR_VERSION = 10
+PRODUCER_NAME = ''
+PRODUCER_VERSION = ''
+DOMAIN = ''
+MODEL_VERSION = 0
+GRAPH_NAME = 'task092_proj_t'
+OPSETS = [('', 21)]
+
+
+# B0: FLOAT[30, 2], 60 value(s)
+INIT_B0_0 = [1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0,
+ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+
+# B1: FLOAT[30, 2], 60 value(s)
+INIT_B1_1 = [1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0,
+ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+
+# B2: FLOAT[30, 2], 60 value(s)
+INIT_B2_2 = [1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0,
+ 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0]
+
+# D4: FLOAT[30, 4], 120 value(s)
+INIT_D4_3 = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+ 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+ 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+ 0.0]
+
+# T: FLOAT[2, 2, 2, 2], 16 value(s)
+INIT_T_4 = [1.0, 60.0, 0.0, 1.0, 0.0, 1770.0, 0.0, 0.0, -1.2544892956984272e-18, -2.0, 0.033898305147886276,
+ -1.2544892956984272e-18, 1.0, -59.0, 1.0, 1.0]
+
+# TF: FLOAT[2, 4, 4], 32 value(s)
+INIT_TF_5 = [1.0, 200.0, 200.0, 200.0, 0.0, 1.0, 200.0, 200.0, 0.0, 0.0, 1.0, 200.0, 0.0, 0.0, 0.0, 1.0, 0.07909604161977768,
+ -6.666666507720947, -6.666666507720947, -6.666666507720947, 0.11299435049295425, 0.07909604161977768,
+ -6.666666507720947, -6.666666507720947, 0.11299435049295425, 0.11299435049295425, 0.07909604161977768,
+ -6.666666507720947, 0.11299435049295425, 0.11299435049295425, 0.11299435049295425, 0.07909604161977768]
+
+# C: FLOAT[10, 2], 20 value(s)
+INIT_C_6 = [-6.749999864608114e-11, -5.750000128812438e-11, -5.389999866485596, -4.389999866485596, -3.8499999046325684,
+ -2.8499999046325684, -2.309999942779541, -1.309999942779541, -0.7699999809265137, 0.23000000417232513,
+ 0.7699999809265137, 1.7699999809265137, 2.309999942779541, 3.309999942779541, 3.8499999046325684, 4.849999904632568,
+ 5.389999866485596, 6.389999866485596, 6.929999828338623, 7.929999828338623]
+
+
+NP_DTYPE = {
+    TensorProto.FLOAT: np.float32,
+    TensorProto.UINT8: np.uint8,
+    TensorProto.INT8: np.int8,
+    TensorProto.UINT16: np.uint16,
+    TensorProto.INT16: np.int16,
+    TensorProto.INT32: np.int32,
+    TensorProto.INT64: np.int64,
+    TensorProto.BOOL: np.bool_,
+    TensorProto.FLOAT16: np.float16,
+    TensorProto.DOUBLE: np.float64,
+    TensorProto.UINT32: np.uint32,
+    TensorProto.UINT64: np.uint64,
+}
+
+
+def _num(value):
+    if value == "inf":
+        return float("inf")
+    if value == "-inf":
+        return float("-inf")
+    if value == "nan":
+        return float("nan")
+    return value
+
+
+def _tensor(name: str, elem_type: int, shape: tuple[int, ...], values: list) -> onnx.TensorProto:
+    if elem_type == TensorProto.STRING:
+        vals = [v.encode("utf-8") if isinstance(v, str) else v for v in values]
+        return helper.make_tensor(name=name, data_type=TensorProto.STRING, dims=list(shape), vals=vals)
+    flat = [_num(value) for value in values]
+    array = np.asarray(flat, dtype=NP_DTYPE[elem_type]).reshape(shape)
+    return numpy_helper.from_array(array, name=name)
+
+
+def _vi(name: str, elem_type: int, shape: list[int | str | None]) -> onnx.ValueInfoProto:
+    return helper.make_tensor_value_info(name, elem_type, shape)
+
+
+class _EmptyAttr:
+    # Sentinel for an EMPTY list-valued attribute (INTS/FLOATS/STRINGS, e.g. a scalar
+    # RandomUniform's shape=[]). helper.make_node() cannot infer the attribute type from a
+    # bare [], so _node() re-adds these with an explicit attr_type after building the node.
+    __slots__ = ("kind",)
+
+    def __init__(self, kind: str) -> None:
+        self.kind = kind
+
+
+def _node(op_type, inputs, outputs, name="", domain="", **attrs):
+    empties = [(k, v.kind) for k, v in attrs.items() if isinstance(v, _EmptyAttr)]
+    for k, _ in empties:
+        attrs.pop(k)
+    node = helper.make_node(op_type, inputs, outputs, name=name, domain=domain, **attrs)
+    for k, kind in empties:
+        node.attribute.append(helper.make_attribute(k, [], attr_type=getattr(AttributeProto, kind)))
+    return node
+
+
+def make_onnx() -> onnx.ModelProto:
+    nodes = [
+        # 0: Einsum inputs=54 outputs=1
+        _node(
+            'Einsum',
+            ['T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'B1', 'B0', 'B2', 'T', 'T', 'T', 'D4', 'TF', 'TF', 'TF',
+             'D4', 'B0', 'B2', 'B1', 'input', 'input', 'C', 'C', 'B0', 'B1', 'B2', 'D4', 'T', 'T', 'T', 'TF',
+             'B0', 'T', 'B1', 'T', 'B2', 'D4', 'T', 'TF', 'D4', 'B0', 'B1', 'B2', 'D4', 'B2', 'B0', 'B1', 'T',
+             'T', 'C', 'C'],
+            ['output'],
+            name='',
+            domain='',
+            equation='dddm,dddm,HOOP,bbbl,HIbg,IJdh,HLgl,LMhm,pd,pb,pe,eeen,JKei,MNin,pf,Kfj,Qfs,Njs,us,ul,un,um,...apq,...auv,ak,aX,qt,qw,qx,qy,HRtz,RSwA,STxB,TyC,vD,HUzD,vE,UVAE,vF,vG,VWBF,WCG,rj,rg,rh,ri,cC,cB,cz,cA,kZZk,YXXY,oZ,oY->...orc',
+        ),
+    ]
+
+    graph = helper.make_graph(
+        nodes,
+        GRAPH_NAME,
+        [
+            _vi('input', TensorProto.FLOAT, [1, 10, 30, 30]),
+        ],
+        [
+            _vi('output', TensorProto.FLOAT, [1, 10, 30, 30]),
+        ],
+        initializer=[
+            _tensor('B0', TensorProto.FLOAT, (30, 2), INIT_B0_0),
+            _tensor('B1', TensorProto.FLOAT, (30, 2), INIT_B1_1),
+            _tensor('B2', TensorProto.FLOAT, (30, 2), INIT_B2_2),
+            _tensor('D4', TensorProto.FLOAT, (30, 4), INIT_D4_3),
+            _tensor('T', TensorProto.FLOAT, (2, 2, 2, 2), INIT_T_4),
+            _tensor('TF', TensorProto.FLOAT, (2, 4, 4), INIT_TF_5),
+            _tensor('C', TensorProto.FLOAT, (10, 2), INIT_C_6),
+        ],
+        value_info=[
+
+        ],
+    )
+    model = helper.make_model(
+        graph,
+        opset_imports=[helper.make_opsetid(domain, version) for domain, version in OPSETS],
+        producer_name=PRODUCER_NAME,
+        producer_version=PRODUCER_VERSION,
+        domain=DOMAIN,
+        model_version=MODEL_VERSION,
+        doc_string="",
+    )
+    model.ir_version = IR_VERSION
+    onnx.checker.check_model(model)
+    return model
+
+
+def save_model(path: str | Path = OUT) -> None:
+    onnx.save_model(make_onnx(), path)
+
+
+if __name__ == "__main__":
+    save_model(sys.argv[1] if len(sys.argv) > 1 else OUT)

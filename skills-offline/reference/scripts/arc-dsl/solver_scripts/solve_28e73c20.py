@@ -1,0 +1,37 @@
+from dsl import *
+from constants import *
+
+
+def solve_28e73c20(I):
+    x1 = width(I)
+    x2 = astuple(ONE, TWO)
+    x3 = astuple(TWO, TWO)
+    x4 = astuple(TWO, ONE)
+    x5 = astuple(THREE, ONE)
+    x6 = canvas(THREE, UNITY)
+    x7 = upscale(x6, FOUR)
+    x8 = initset(DOWN)
+    x9 = insert(UNITY, x8)
+    x10 = insert(x2, x9)
+    x11 = insert(x3, x10)
+    x12 = fill(x7, ZERO, x11)
+    x13 = vupscale(x6, FIVE)
+    x14 = hupscale(x13, THREE)
+    x15 = insert(x4, x9)
+    x16 = insert(x5, x15)
+    x17 = fill(x14, ZERO, x16)
+    x18 = even(x1)
+    x19 = branch(x18, x12, x17)
+    x20 = canvas(ZERO, UNITY)
+    x21 = lbind(hupscale, x20)
+    x22 = chain(x21, decrement, height)
+    x23 = rbind(hconcat, x6)
+    x24 = compose(x23, x22)
+    x25 = lbind(hupscale, x6)
+    x26 = compose(x25, height)
+    x27 = fork(vconcat, x24, rot90)
+    x28 = fork(vconcat, x26, x27)
+    x29 = subtract(x1, FOUR)
+    x30 = power(x28, x29)
+    O = x30(x19)
+    return O

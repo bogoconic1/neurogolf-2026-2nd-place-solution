@@ -1,0 +1,38 @@
+from dsl import *
+from constants import *
+
+
+def solve_d07ae81c(I):
+    x1 = objects(I, T, F, F)
+    x2 = sizefilter(x1, ONE)
+    x3 = apply(color, x2)
+    x4 = difference(x1, x2)
+    x5 = apply(color, x4)
+    x6 = first(x5)
+    x7 = last(x5)
+    x8 = ofcolor(I, x6)
+    x9 = ofcolor(I, x7)
+    x10 = rbind(shoot, UNITY)
+    x11 = rbind(shoot, NEG_UNITY)
+    x12 = rbind(shoot, DOWN_LEFT)
+    x13 = rbind(shoot, UP_RIGHT)
+    x14 = fork(combine, x10, x11)
+    x15 = fork(combine, x12, x13)
+    x16 = fork(combine, x14, x15)
+    x17 = compose(x16, center)
+    x18 = mapply(x17, x2)
+    x19 = intersection(x8, x18)
+    x20 = intersection(x9, x18)
+    x21 = first(x2)
+    x22 = color(x21)
+    x23 = center(x21)
+    x24 = neighbors(x23)
+    x25 = toobject(x24, I)
+    x26 = mostcolor(x25)
+    x27 = other(x3, x22)
+    x28 = equality(x26, x6)
+    x29 = branch(x28, x22, x27)
+    x30 = branch(x28, x27, x22)
+    x31 = fill(I, x29, x19)
+    O = fill(x31, x30, x20)
+    return O

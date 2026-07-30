@@ -1,0 +1,9 @@
+from dsl import *
+from constants import *
+
+
+def solve_f25ffba3(I):
+    x1 = bottomhalf(I)
+    x2 = hmirror(x1)
+    O = vconcat(x2, x1)
+    return O

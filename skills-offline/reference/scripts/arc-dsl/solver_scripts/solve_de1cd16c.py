@@ -1,0 +1,16 @@
+from dsl import *
+from constants import *
+
+
+def solve_de1cd16c(I):
+    x1 = leastcolor(I)
+    x2 = objects(I, T, F, F)
+    x3 = sizefilter(x2, ONE)
+    x4 = difference(x2, x3)
+    x5 = rbind(subgrid, I)
+    x6 = apply(x5, x4)
+    x7 = rbind(colorcount, x1)
+    x8 = argmax(x6, x7)
+    x9 = mostcolor(x8)
+    O = canvas(x9, UNITY)
+    return O

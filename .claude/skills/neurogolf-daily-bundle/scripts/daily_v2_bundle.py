@@ -26,7 +26,8 @@ HF_TOKEN is read from <repo>/.env (never printed).
 """
 import os, sys, json, shutil, subprocess, tempfile
 
-REPO = os.path.expanduser('~/Documents/NeuroGolf-2026')
+# repo root = four levels above this script (.../<root>/.claude/skills/<skill>/scripts/)
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 SPACE = "golfingteam10000pts/neurogolf-leaderboard-v2"
 SKILLS_OFFLINE = os.path.join(REPO, 'skills-offline')
 SOLUTIONS_PY = os.path.join(SKILLS_OFFLINE, 'solutions_py')

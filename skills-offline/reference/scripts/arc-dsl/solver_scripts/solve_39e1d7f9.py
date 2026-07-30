@@ -1,0 +1,36 @@
+from dsl import *
+from constants import *
+
+
+def solve_39e1d7f9(I):
+    x1 = fgpartition(I)
+    x2 = objects(I, T, F, T)
+    x3 = order(x1, height)
+    x4 = last(x3)
+    x5 = remove(x4, x3)
+    x6 = last(x5)
+    x7 = color(x6)
+    x8 = colorfilter(x2, x7)
+    x9 = power(outbox, TWO)
+    x10 = rbind(toobject, I)
+    x11 = mostcolor(I)
+    x12 = lbind(remove, x11)
+    x13 = chain(size, x12, palette)
+    x14 = chain(x13, x10, x9)
+    x15 = argmax(x8, x14)
+    x16 = ulcorner(x15)
+    x17 = shape(x15)
+    x18 = subtract(x16, x17)
+    x19 = decrement(x18)
+    x20 = multiply(x17, THREE)
+    x21 = add(x20, TWO_BY_TWO)
+    x22 = crop(I, x19, x21)
+    x23 = asobject(x22)
+    x24 = apply(ulcorner, x8)
+    x25 = increment(x17)
+    x26 = rbind(subtract, x25)
+    x27 = apply(x26, x24)
+    x28 = lbind(shift, x23)
+    x29 = mapply(x28, x27)
+    O = paint(I, x29)
+    return O

@@ -64,8 +64,9 @@ NeuroGolf evaluator/ORT path before saving.
 
 ## Hard Rules
 
-- **MODEL MUST BE `Extra High`.** Before creating ANY session, open the composer model picker (Chrome tool)
-  and confirm `Extra High` is selected; select it if not. Do NOT use Pro Extended or any other tier — `Extra High` ONLY.
+- **MODEL MUST BE `5.6 Sol Pro`.** Before creating ANY session, open the composer model picker (Chrome tool)
+  and confirm `5.6 Sol Pro` is selected; select it if not. If `5.6 Sol Pro` is unavailable or rate-limited, fall
+  back to `5.6 Sol Extra High` for that session — never drop below `5.6 Sol Extra High`.
   Re-confirm whenever the picker may have reset.
 - If starting from `skills-offline/solutions_py/taskNNN.py`, build a persistent
   ONNX before tracing or timing:
@@ -182,7 +183,11 @@ For each task in `neurogolf_runtime_v1_tasklist.txt`:
   again, verify the bubble.
 - **Markdown harvest:** ChatGPT lazy-loads older turns **only on a real wheel scroll** — scroll to the very
   TOP first, then download each card top→bottom (chronological), then run the md mover.
-- **ONNX cards download reliably only via a coordinate click**, not ref/JS clicks.
+- **READ `GPT56_BUTTON_PATTERNS.md` (repo root) BEFORE harvesting — it is the guide for clicking the ONNX
+  download buttons.** GPT-5.6/5.5 renders the download control in several distinct shapes (prefixed link,
+  bare chip, champion-skip, descriptive) plus INERT non-downloadable chips; the doc shows how to recognize
+  and click each shape and which to skip. **ONNX cards download reliably only via a coordinate click**, not
+  ref/JS clicks.
 - **Best ONNX not downloadable** (no card / inert link / `/tmp`-only path) and worth grabbing → do ONE
   recovery probe: send `Give me the downloadable best ONNX file`, wait ~2 min (the probe is a send, so that
   wait is the cooldown), then download it or add a `runtime-v1-blockers.md` row. Don't loop.

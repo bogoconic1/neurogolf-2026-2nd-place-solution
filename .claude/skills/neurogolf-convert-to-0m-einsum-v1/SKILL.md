@@ -58,9 +58,10 @@ compress color tables to 10×2/10×3; sweep latent width down; delete tiny helpe
 
 ## Hard Rules
 
-- **MODEL MUST BE `Pro Extended`.** Before creating ANY session, open the composer model picker (Chrome tool) and
-  confirm `Pro Extended` is selected; select it if not. If `Pro Extended` is not offered on the account, fall back to
-  `Extra High` for that session — never drop below `Extra High`. Re-confirm whenever the picker may have reset.
+- **MODEL MUST BE `5.6 Sol Pro`.** Before creating ANY session, open the composer model picker (Chrome tool) and
+  confirm `5.6 Sol Pro` is selected; select it if not. If `5.6 Sol Pro` is unavailable or rate-limited, fall back to
+  `5.6 Sol Extra High` for that session — never drop below `5.6 Sol Extra High`. Re-confirm whenever the picker
+  may have reset.
 - **Produce ONE input→output `Einsum`, memory=0** (emit `output` directly). The candidate must be a sincere,
   CORRECT solver (re-express the task rule, do not passthrough/metric-hack) and stay a single Einsum with
   memory 0; beat the champion's `m + p` on params.
@@ -149,7 +150,7 @@ Use the claude-in-chrome MCP/browser tool. For each task in
 - **Before sending, open the "Pasted Text" chip** to confirm the right `taskNNN` is inside — the shared macOS clipboard can be clobbered by a parallel driver. After sending, **verify the user bubble appeared**.
 - The round-1 prompt is a long paste — make sure the **FULL text landed** in the composer and the user message **actually posted** before moving on; if not, re-open the composer, ensure the full text is present, send again, verify the bubble.
 - **Markdown harvest:** ChatGPT lazy-loads older turns **only on a real wheel scroll** — scroll to the very TOP first, then download each card top→bottom (chronological), then run the md mover.
-- **ONNX cards download reliably only via a coordinate click**, not ref/JS clicks.
+- **READ `GPT56_BUTTON_PATTERNS.md` (repo root) BEFORE harvesting — it is the guide for clicking the ONNX download buttons.** GPT-5.6/5.5 renders the download control in several distinct shapes (prefixed link, bare chip, champion-skip, descriptive) plus INERT non-downloadable chips; the doc shows how to recognize and click each shape and which to skip. **ONNX cards download reliably only via a coordinate click**, not ref/JS clicks.
 - **Best ONNX not downloadable** (no card / inert link / `/tmp`-only path) and it claims to beat the champion → do ONE recovery probe: send `Give me the downloadable best ONNX file`, wait ~2 min (the probe is a send, so that wait is the cooldown), then download it or add a `convert-to-0m-einsum-v1-blockers.md` row. Don't loop.
 - **ZIP fallback:** ONNX/markdown delivered only inside a zip → download it, `unzip -o -j '*.onnx'` (or `'*.md'`), move each into its folder as `task{NNN}_<name>.onnx`/`.md`, append a manifest row. **Generic-name markdown** ("no md matching taskNNN") → inspect content for the task number and `mv` it in.
 - **Checkpoint** the mapping (and the driver memory) every ~10 sends; the manifests + mapping are the source of truth, and both pollers content-hash dedup, so re-harvest/re-submit/re-post is idempotent.

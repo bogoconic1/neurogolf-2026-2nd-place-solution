@@ -14,10 +14,10 @@ import sys
 
 SNAP = "/tmp/harvest_md_compress_einsum_v1_snap.txt"
 DL = os.path.expanduser("~/Downloads")
-BASE = os.path.expanduser("~/Documents/NeuroGolf-2026/claude-for-chrome-compress-einsum-v1-markdown")
-MAN = os.path.expanduser(
-    "~/Documents/NeuroGolf-2026/zzz_sessions/markdown-harvest-manifest-compress-einsum-v1.csv"
-)
+# repo root = four levels above this script (.../<root>/.claude/skills/<skill>/scripts/)
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+BASE = f"{ROOT}/claude-for-chrome-compress-einsum-v1-markdown"
+MAN = f"{ROOT}/zzz_sessions/markdown-harvest-manifest-compress-einsum-v1.csv"
 
 
 def current_md():

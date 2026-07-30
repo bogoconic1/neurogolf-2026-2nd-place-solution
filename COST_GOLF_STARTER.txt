@@ -1,0 +1,32 @@
+# Task
+
+You are lowering the total cost of the NeuroGolf champion for task{NNN}. Its champion builder is `skills-offline/solutions_py/task{NNN}.py` in your Sources — the champion may be ANY op (Einsum, ConvTranspose, Conv, TfIdfVectorizer, the random-generator ops, memorizers, …). Build it (`python skills-offline/solutions_py/task{NNN}.py champ.onnx`) and read its cost = memory_bytes + params. GOAL: produce a graph whose total **cost = memory_bytes + params is BELOW the champion's** (NeuroGolf score = 25 - ln(memory + params)). You may REPLACE the champion with ANY construction and the final deliverable may carry memory — as long as memory + params < champion cost.
+
+Correctness is judged ONLY by the shipped examples. RUN `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0` and confirm it passes 100% of `skills-offline/evaluate/scripts/neurogolf-2026/task{NNN}.json`. If it passes, it's good — submit it. Save the downloadable file as `task{NNN}_m{memory}_p{params}.onnx` (memory + params from static graph inspection) with memory + params < champion cost. No sparse-stored initializers.
+
+--------------------------------------------------------------------------------
+
+# Method
+
+Read `skills-offline/TRICKS.md` — it is the catalogue of constructions that have worked on this benchmark, indexed by operator family and by the shape of the task. Use it as a starting point rather than a limit: any construction is ok as long as the graph passes every shipped example and lands below the champion's cost. No op family is privileged, and the champion's shape does not constrain yours — you are free to throw it away and build something else entirely.
+
+For fast iteration, evaluate candidates in NumPy first — much faster than ORT — and only run the evaluator to CONFIRM the final graph.
+
+TARGET — DO NOT STOP SHORT: beat the champion by +1.0 points (reach champion_score + 1.0), or get as far as you can. "Already optimal / no further trim / infeasible" is NOT a valid stop — treat it as under-explored and try a genuinely DIFFERENT family. Reason from FIRST PRINCIPLES; try aggressive rewrites to escape local optima. +1.0 is 100% possible — it is your skill issue. The best ONNX experts in the world have done it. Try an aggressive rewrite if needed.
+
+# Correctness is judged ONLY by the shipped examples
+
+Run `python skills-offline/evaluate/scripts/evaluate.py --input <onnx> --tasks task{NNN} --new-samples 0`. It runs your ONNX against `skills-offline/evaluate/scripts/neurogolf-2026/task{NNN}.json` (train + test + seed-cracked arc-gen) and reports per-split pass/fail plus memory_bytes / params / score. A candidate is CORRECT iff it passes 100% of those examples. If it passes, it's good — submit it. Feel free to use ANY construction you like, as long as it passes every shipped example at the highest score you can reach.
+
+# Output
+
+Save a downloadable `task{NNN}_m{memory}_p{params}.onnx` (memory + params from static graph inspection).
+Start your reply with this table, then name the construction you used and the saved filename:
+
+| Metric | Previous | Current | Delta |
+| ---------------- | ----------------: | ---------------: | -------------------: |
+| Score | <previous_score> | <current_score> | **<current - previous>** |
+| Cost | <previous_cost> | <current_cost> | <current - previous> |
+| Memory bytes | <previous_memory> | <current_memory> | <current - previous> |
+| Params | <previous_params> | <current_params> | <current - previous> |
+| Examples passed | <previous_passed> | <current_passed> | all/partial |

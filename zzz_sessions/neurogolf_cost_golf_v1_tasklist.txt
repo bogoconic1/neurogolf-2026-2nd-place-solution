@@ -1,0 +1,4 @@
+# cost-golf-v1 tasklist (5.6 Sol Pro; COST_GOLF_STARTER.txt playbook)
+# One taskNNN per line. Any task is valid — the champion may be any op family.
+# Optional trailing comment: live champ score and the champion's m/p from
+# skills-offline/solutions_py/taskNNN.py. Beat = memory+params < champion cost.

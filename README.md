@@ -47,10 +47,11 @@ task list, driving long-running ChatGPT sessions through Claude for Chrome:
    asynchronously; `reconcile_submissions_*.py` then routes each file by the Space's verdict into
    `safe/`, `unsafe/`, `invalid/` or `timeout/`.
 
-Four lanes are included, each a self-contained skill under `.claude/skills/`:
+Five lanes are included, each a self-contained skill under `.claude/skills/`:
 
 | Lane | Objective |
 |---|---|
+| `neurogolf-cost-golf-v1` | the general lane — beat the champion on total `memory + params` by any construction |
 | `neurogolf-compress-einsum-v1` | champion is already one memory-0 `Einsum` → shrink its params |
 | `neurogolf-convert-to-0m-einsum-v1` | champion is *not* memory-0 → re-express as one memory-0 `Einsum` with `params < m+p` |
 | `neurogolf-runtime-v1` | same score, lower runtime, by reordering `Einsum` operands only |
@@ -67,8 +68,7 @@ python skills-offline/evaluate/scripts/evaluate.py \
 
 which grades against `skills-offline/evaluate/scripts/neurogolf-2026/task381.json`
 (train + test + seed-cracked arc-gen) and prints per-split pass/fail plus `memory_bytes` / `params` /
-score. Pass them all and the candidate ships — any construction that reaches the highest score is
-fair game.
+score. Pass them all and the candidate ships — any construction that reaches the highest score is ok.
 
 ## Setup
 
@@ -132,9 +132,9 @@ Run the **daily-bundle** goal message first: the solver sessions read the baseli
 ## Layout
 
 ```
-.claude/skills/          the four driver skills (SKILL.md + harvest/reconcile scripts)
+.claude/skills/          the five driver skills (SKILL.md + harvest/reconcile scripts)
 GOAL_MESSAGES.txt        paste-ready /goal message per lane
-COMPRESS_EINSUM_STARTER.txt, CONVERT_0M_STARTER.txt
+COST_GOLF_STARTER.txt, COMPRESS_EINSUM_STARTER.txt, CONVERT_0M_STARTER.txt
                          round-1 playbooks — the message a session actually receives
 TRICKS.md                the technique catalogue (the substance of the solution)
 GPT56_BUTTON_PATTERNS.md how to click ChatGPT's download controls reliably

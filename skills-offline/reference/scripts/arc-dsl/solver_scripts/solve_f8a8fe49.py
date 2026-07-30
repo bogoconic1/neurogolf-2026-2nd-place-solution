@@ -1,0 +1,38 @@
+from dsl import *
+from constants import *
+
+
+def solve_f8a8fe49(I):
+    x1 = objects(I, T, F, T)
+    x2 = replace(I, FIVE, ZERO)
+    x3 = colorfilter(x1, TWO)
+    x4 = first(x3)
+    x5 = portrait(x4)
+    x6 = branch(x5, hsplit, vsplit)
+    x7 = branch(x5, vmirror, hmirror)
+    x8 = ofcolor(I, TWO)
+    x9 = subgrid(x8, I)
+    x10 = trim(x9)
+    x11 = x7(x10)
+    x12 = x6(x11, TWO)
+    x13 = compose(normalize, asobject)
+    x14 = apply(x13, x12)
+    x15 = last(x14)
+    x16 = first(x14)
+    x17 = ulcorner(x8)
+    x18 = increment(x17)
+    x19 = shift(x15, x18)
+    x20 = shift(x16, x18)
+    x21 = branch(x5, width, height)
+    x22 = branch(x5, tojvec, toivec)
+    x23 = x21(x15)
+    x24 = double(x23)
+    x25 = compose(x22, increment)
+    x26 = x25(x23)
+    x27 = invert(x26)
+    x28 = x25(x24)
+    x29 = shift(x19, x27)
+    x30 = shift(x20, x28)
+    x31 = paint(x2, x29)
+    O = paint(x31, x30)
+    return O

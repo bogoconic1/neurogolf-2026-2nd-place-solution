@@ -64,8 +64,9 @@ NeuroGolf evaluator/ORT path before saving.
 
 ## Hard Rules
 
-- **MODEL MUST BE `Extra High`.** Before creating ANY session, open the composer model picker (Chrome tool)
-  and confirm `Extra High` is selected; select it if not. Do NOT use Pro Extended or any other tier — `Extra High` ONLY.
+- **MODEL MUST BE `5.6 Sol Pro`.** Before creating ANY session, open the composer model picker (Chrome tool)
+  and confirm `5.6 Sol Pro` is selected; select it if not. If `5.6 Sol Pro` is unavailable or rate-limited, fall
+  back to `5.6 Sol Extra High` for that session — never drop below `5.6 Sol Extra High`.
   Re-confirm whenever the picker may have reset.
 - If starting from `skills-offline/solutions_py/taskNNN.py`, build a persistent
   ONNX before tracing or timing:

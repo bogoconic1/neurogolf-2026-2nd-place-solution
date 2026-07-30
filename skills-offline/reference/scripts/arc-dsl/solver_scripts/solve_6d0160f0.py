@@ -1,0 +1,38 @@
+from dsl import *
+from constants import *
+
+
+def solve_6d0160f0(I):
+    x1 = ofcolor(I, FOUR)
+    x2 = first(x1)
+    x3 = first(x2)
+    x4 = last(x2)
+    x5 = greater(x3, THREE)
+    x6 = greater(x3, SEVEN)
+    x7 = greater(x4, THREE)
+    x8 = greater(x4, SEVEN)
+    x9 = branch(x5, FOUR, ZERO)
+    x10 = branch(x6, EIGHT, x9)
+    x11 = branch(x7, FOUR, ZERO)
+    x12 = branch(x8, EIGHT, x11)
+    x13 = astuple(x10, x12)
+    x14 = initset(ZERO)
+    x15 = insert(FOUR, x14)
+    x16 = insert(EIGHT, x15)
+    x17 = product(x16, x16)
+    x18 = crop(I, ORIGIN, THREE_BY_THREE)
+    x19 = asindices(x18)
+    x20 = recolor(ZERO, x19)
+    x21 = lbind(shift, x20)
+    x22 = mapply(x21, x17)
+    x23 = paint(I, x22)
+    x24 = crop(I, x13, THREE_BY_THREE)
+    x25 = replace(x24, FIVE, ZERO)
+    x26 = ofcolor(x25, FOUR)
+    x27 = first(x26)
+    x28 = asindices(x25)
+    x29 = toobject(x28, x25)
+    x30 = multiply(x27, FOUR)
+    x31 = shift(x29, x30)
+    O = paint(x23, x31)
+    return O

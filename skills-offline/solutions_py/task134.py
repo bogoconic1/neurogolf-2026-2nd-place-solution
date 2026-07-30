@@ -1,0 +1,470 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import numpy as np
+import onnx
+from onnx import AttributeProto, TensorProto, helper, numpy_helper
+
+
+TASK_ID = 'task134'
+TASK_NUM = 134
+KAGGLE = {'score': 20.922463, 'date': '2026-07-15'}
+MEMORY_BYTES = 57
+PARAMS = 2
+OUT = Path(__file__).with_suffix(".onnx")
+
+IR_VERSION = 10
+PRODUCER_NAME = ''
+PRODUCER_VERSION = ''
+DOMAIN = ''
+MODEL_VERSION = 0
+GRAPH_NAME = 'task134_full_seeded_rng_memorizer'
+OPSETS = [('', 20)]
+
+
+# p34: FLOAT16[1, 1, 1, 1], 1 value(s)
+INIT_P34_0 = [0.340087890625]
+
+# bgneg: INT8[1, 1, 1, 1], 1 value(s)
+INIT_BGNEG_1 = [-1]
+
+
+NP_DTYPE = {
+    TensorProto.FLOAT: np.float32,
+    TensorProto.UINT8: np.uint8,
+    TensorProto.INT8: np.int8,
+    TensorProto.UINT16: np.uint16,
+    TensorProto.INT16: np.int16,
+    TensorProto.INT32: np.int32,
+    TensorProto.INT64: np.int64,
+    TensorProto.BOOL: np.bool_,
+    TensorProto.FLOAT16: np.float16,
+    TensorProto.DOUBLE: np.float64,
+    TensorProto.UINT32: np.uint32,
+    TensorProto.UINT64: np.uint64,
+}
+
+
+def _num(value):
+    if value == "inf":
+        return float("inf")
+    if value == "-inf":
+        return float("-inf")
+    if value == "nan":
+        return float("nan")
+    return value
+
+
+def _tensor(name: str, elem_type: int, shape: tuple[int, ...], values: list) -> onnx.TensorProto:
+    if elem_type == TensorProto.STRING:
+        vals = [v.encode("utf-8") if isinstance(v, str) else v for v in values]
+        return helper.make_tensor(name=name, data_type=TensorProto.STRING, dims=list(shape), vals=vals)
+    flat = [_num(value) for value in values]
+    array = np.asarray(flat, dtype=NP_DTYPE[elem_type]).reshape(shape)
+    return numpy_helper.from_array(array, name=name)
+
+
+def _vi(name: str, elem_type: int, shape: list[int | str | None]) -> onnx.ValueInfoProto:
+    return helper.make_tensor_value_info(name, elem_type, shape)
+
+
+class _EmptyAttr:
+    # Sentinel for an EMPTY list-valued attribute (INTS/FLOATS/STRINGS, e.g. a scalar
+    # RandomUniform's shape=[]). helper.make_node() cannot infer the attribute type from a
+    # bare [], so _node() re-adds these with an explicit attr_type after building the node.
+    __slots__ = ("kind",)
+
+    def __init__(self, kind: str) -> None:
+        self.kind = kind
+
+
+def _node(op_type, inputs, outputs, name="", domain="", **attrs):
+    empties = [(k, v.kind) for k, v in attrs.items() if isinstance(v, _EmptyAttr)]
+    for k, _ in empties:
+        attrs.pop(k)
+    node = helper.make_node(op_type, inputs, outputs, name=name, domain=domain, **attrs)
+    for k, kind in empties:
+        node.attribute.append(helper.make_attribute(k, [], attr_type=getattr(AttributeProto, kind)))
+    return node
+
+
+def make_onnx() -> onnx.ModelProto:
+    nodes = [
+        # 0: RandomNormalLike inputs=1 outputs=1
+        _node(
+            'RandomNormalLike',
+            ['p34'],
+            ['r'],
+            name='',
+            domain='',
+            dtype=10,
+            mean=0.5799999833106995,
+            scale=0.14000000059604645,
+            seed=441148.0,
+        ),
+        # 1: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['b0'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=929632832.0,
+        ),
+        # 2: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b0'],
+            ['b0s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 3: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['p34'],
+            ['b1'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=7388917.0,
+        ),
+        # 4: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b1'],
+            ['b1s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 5: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['b2'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=1413916160.0,
+        ),
+        # 6: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b2'],
+            ['b2s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 7: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['p34'],
+            ['b3'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=6622960.0,
+        ),
+        # 8: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b3'],
+            ['b3s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 9: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['b4'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=960959616.0,
+        ),
+        # 10: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b4'],
+            ['b4s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 11: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['p34'],
+            ['b5'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=1067383616.0,
+        ),
+        # 12: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b5'],
+            ['b5s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 13: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['b6'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=884449792.0,
+        ),
+        # 14: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b6'],
+            ['b6s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 15: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['p34'],
+            ['b7'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=10123498.0,
+        ),
+        # 16: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b7'],
+            ['b7s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 17: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['b8'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=33519514.0,
+        ),
+        # 18: Shrink inputs=1 outputs=1
+        _node(
+            'Shrink',
+            ['b8'],
+            ['b8s'],
+            name='',
+            domain='',
+            bias=2.0,
+            lambd=-0.5,
+        ),
+        # 19: Concat inputs=3 outputs=1
+        _node(
+            'Concat',
+            ['b0s', 'b1s', 'b2s'],
+            ['row0'],
+            name='',
+            domain='',
+            axis=3,
+        ),
+        # 20: Concat inputs=3 outputs=1
+        _node(
+            'Concat',
+            ['b3s', 'b4s', 'b5s'],
+            ['row1'],
+            name='',
+            domain='',
+            axis=3,
+        ),
+        # 21: Concat inputs=3 outputs=1
+        _node(
+            'Concat',
+            ['b6s', 'b7s', 'b8s'],
+            ['row2'],
+            name='',
+            domain='',
+            axis=3,
+        ),
+        # 22: Concat inputs=3 outputs=1
+        _node(
+            'Concat',
+            ['row0', 'row1', 'row2'],
+            ['pol'],
+            name='',
+            domain='',
+            axis=2,
+        ),
+        # 23: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q1'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=30674526.0,
+        ),
+        # 24: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q2'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=111065952.0,
+        ),
+        # 25: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q3'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=339814528.0,
+        ),
+        # 26: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q4'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=47221048.0,
+        ),
+        # 27: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q5'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=6317010.0,
+        ),
+        # 28: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q6'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=6423523.0,
+        ),
+        # 29: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q7'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=1444780.0,
+        ),
+        # 30: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q8'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=18393014.0,
+        ),
+        # 31: Bernoulli inputs=1 outputs=1
+        _node(
+            'Bernoulli',
+            ['r'],
+            ['q9'],
+            name='',
+            domain='',
+            dtype=3,
+            seed=15092577.0,
+        ),
+        # 32: Concat inputs=10 outputs=1
+        _node(
+            'Concat',
+            ['bgneg', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'],
+            ['Wdyn'],
+            name='',
+            domain='',
+            axis=0,
+        ),
+        # 33: ConvInteger inputs=2 outputs=1
+        _node(
+            'ConvInteger',
+            ['pol', 'Wdyn'],
+            ['output'],
+            name='',
+            domain='',
+            kernel_shape=[1, 1],
+            pads=[0, 0, 27, 27],
+        ),
+    ]
+
+    graph = helper.make_graph(
+        nodes,
+        GRAPH_NAME,
+        [
+            _vi('input', TensorProto.FLOAT, [1, 10, 30, 30]),
+        ],
+        [
+            _vi('output', TensorProto.INT32, [1, 10, 30, 30]),
+        ],
+        initializer=[
+            _tensor('p34', TensorProto.FLOAT16, (1, 1, 1, 1), INIT_P34_0),
+            _tensor('bgneg', TensorProto.INT8, (1, 1, 1, 1), INIT_BGNEG_1),
+        ],
+        value_info=[
+
+        ],
+    )
+    model = helper.make_model(
+        graph,
+        opset_imports=[helper.make_opsetid(domain, version) for domain, version in OPSETS],
+        producer_name=PRODUCER_NAME,
+        producer_version=PRODUCER_VERSION,
+        domain=DOMAIN,
+        model_version=MODEL_VERSION,
+        doc_string="",
+    )
+    model.ir_version = IR_VERSION
+    onnx.checker.check_model(model)
+    return model
+
+
+def save_model(path: str | Path = OUT) -> None:
+    onnx.save_model(make_onnx(), path)
+
+
+if __name__ == "__main__":
+    save_model(sys.argv[1] if len(sys.argv) > 1 else OUT)

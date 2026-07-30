@@ -55,9 +55,10 @@ compress color tables to 10×2/10×3; sweep latent width down; delete tiny helpe
 
 ## Hard Rules
 
-- **MODEL MUST BE `Pro Extended`.** Before creating ANY session, open the composer model picker (Chrome tool) and
-  confirm `Pro Extended` is selected; select it if not. If `Pro Extended` is not offered on the account, fall back to
-  `Extra High` for that session — never drop below `Extra High`. Re-confirm whenever the picker may have reset.
+- **MODEL MUST BE `5.6 Sol Pro`.** Before creating ANY session, open the composer model picker (Chrome tool) and
+  confirm `5.6 Sol Pro` is selected; select it if not. If `5.6 Sol Pro` is unavailable or rate-limited, fall back to
+  `5.6 Sol Extra High` for that session — never drop below `5.6 Sol Extra High`. Re-confirm whenever the picker
+  may have reset.
 - **Keep ONE input→output `Einsum`, memory=0.** The candidate must be a sincere, CORRECT solver (improve the
   champion builder, do not passthrough/metric-hack) and stay a single Einsum with memory 0; only params shrink.
 - **Genuinely SOLVE — run `evaluate/scripts/evaluate.py`** and be correct on the known/public examples before

@@ -1,0 +1,37 @@
+from dsl import *
+from constants import *
+
+
+def solve_1e32b0e9(I):
+    x1 = height(I)
+    x2 = mostcolor(I)
+    x3 = asobject(I)
+    x4 = subtract(x1, TWO)
+    x5 = divide(x4, THREE)
+    x6 = astuple(x5, x5)
+    x7 = crop(I, ORIGIN, x6)
+    x8 = partition(x7)
+    x9 = matcher(color, ZERO)
+    x10 = compose(flip, x9)
+    x11 = extract(x8, x10)
+    x12 = initset(x2)
+    x13 = palette(x3)
+    x14 = palette(x11)
+    x15 = difference(x13, x14)
+    x16 = difference(x15, x12)
+    x17 = first(x16)
+    x18 = interval(ZERO, THREE, ONE)
+    x19 = product(x18, x18)
+    x20 = totuple(x19)
+    x21 = apply(first, x20)
+    x22 = apply(last, x20)
+    x23 = lbind(multiply, x5)
+    x24 = apply(x23, x21)
+    x25 = apply(x23, x22)
+    x26 = papply(add, x24, x21)
+    x27 = papply(add, x25, x22)
+    x28 = papply(astuple, x26, x27)
+    x29 = lbind(shift, x11)
+    x30 = mapply(x29, x28)
+    O = underfill(I, x17, x30)
+    return O

@@ -1,0 +1,1919 @@
+{
+  "1": [
+    "image_repetition",
+    "fractal_repetition"
+  ],
+  "2": [
+    "loop_filling"
+  ],
+  "3": [
+    "recoloring",
+    "pattern_expansion",
+    "pattern_repetition",
+    "image_expansion"
+  ],
+  "4": [
+    "pattern_modification"
+  ],
+  "5": [
+    "pattern_expansion",
+    "direction_guessing"
+  ],
+  "6": [
+    "detect_wall",
+    "separate_images",
+    "pattern_intersection"
+  ],
+  "7": [
+    "image_filling",
+    "pattern_expansion",
+    "diagonals"
+  ],
+  "8": [
+    "pattern_moving",
+    "direction_guessing",
+    "bring_patterns_close"
+  ],
+  "9": [
+    "detect_grid",
+    "connect_the_dots",
+    "grid_coloring"
+  ],
+  "10": [
+    "measure_length",
+    "order_numbers",
+    "associate_colors_to_ranks",
+    "recoloring"
+  ],
+  "11": [
+    "detect_grid",
+    "separate_images",
+    "count_tiles",
+    "take_minimum",
+    "enlarge_image",
+    "create_grid",
+    "adapt_image_to_grid"
+  ],
+  "12": [
+    "pattern_expansion"
+  ],
+  "13": [
+    "direction_guessing",
+    "draw_line_from_point",
+    "pattern_expansion"
+  ],
+  "14": [
+    "detect_grid",
+    "separate_images",
+    "find_the_intruder",
+    "crop"
+  ],
+  "15": [
+    "pattern_expansion",
+    "associate_patterns_to_colors"
+  ],
+  "16": [
+    "associate_colors_to_colors"
+  ],
+  "17": [
+    "image_filling",
+    "pattern_expansion"
+  ],
+  "18": [
+    "associate_patterns_to_patterns",
+    "pattern_repetition",
+    "pattern_rotation",
+    "pattern_reflection",
+    "pattern_juxtaposition"
+  ],
+  "19": [
+    "pattern_expansion",
+    "image_repetition"
+  ],
+  "20": [
+    "pattern_expansion"
+  ],
+  "21": [
+    "detect_grid",
+    "count_hor_lines",
+    "count_ver_lines",
+    "detect_background_color",
+    "color_guessing",
+    "create_image_from_info"
+  ],
+  "22": [
+    "pattern_juxtaposition"
+  ],
+  "23": [
+    "pattern_coloring",
+    "pattern_deconstruction",
+    "associate_colors_to_patterns"
+  ],
+  "24": [
+    "direction_guessing",
+    "draw_line_from_point"
+  ],
+  "25": [
+    "bring_patterns_close",
+    "find_the_intruder"
+  ],
+  "26": [
+    "detect_wall",
+    "separate_images",
+    "pattern_intersection"
+  ],
+  "27": [
+    "pattern_deconstruction",
+    "pattern_rotation",
+    "pattern_expansion"
+  ],
+  "28": [
+    "pattern_expansion"
+  ],
+  "29": [
+    "detect_enclosure",
+    "crop"
+  ],
+  "30": [
+    "pattern_moving",
+    "pattern_alignment"
+  ],
+  "31": [
+    "crop"
+  ],
+  "32": [
+    "pattern_moving",
+    "gravity"
+  ],
+  "33": [
+    "detect_grid",
+    "separate_images",
+    "image_repetition",
+    "pattern_completion"
+  ],
+  "34": [
+    "pattern_expansion",
+    "diagonals",
+    "direction_guessing"
+  ],
+  "35": [
+    "image_within_image",
+    "projection_unto_rectangle"
+  ],
+  "36": [
+    "crop",
+    "find_the_intruder"
+  ],
+  "37": [
+    "connect_the_dots",
+    "diagonals"
+  ],
+  "38": [
+    "count_patterns",
+    "associate_images_to_numbers"
+  ],
+  "39": [
+    "pattern_deconstruction",
+    "crop"
+  ],
+  "40": [
+    "proximity_guessing",
+    "recoloring"
+  ],
+  "41": [
+    "pattern_expansion"
+  ],
+  "42": [
+    "pattern_expansion",
+    "size_guessing"
+  ],
+  "43": [
+    "direction_guessing",
+    "draw_line_from_point",
+    "pattern_intersection"
+  ],
+  "44": [
+    "pattern_moving",
+    "loop_filling",
+    "shape_guessing",
+    "x_marks_the_spot"
+  ],
+  "45": [
+    "connect_the_dots",
+    "color_matching"
+  ],
+  "46": [
+    "recoloring",
+    "bring_patterns_close",
+    "crop"
+  ],
+  "47": [
+    "draw_line_from_point",
+    "pattern_intersection"
+  ],
+  "48": [
+    "detect_connectedness",
+    "associate_images_to_bools"
+  ],
+  "49": [
+    "measure_area",
+    "take_minimum",
+    "crop"
+  ],
+  "50": [
+    "connect_the_dots",
+    "direction_guessing"
+  ],
+  "51": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "color_guessing"
+  ],
+  "52": [
+    "detect_hor_lines",
+    "recoloring",
+    "remove_noise"
+  ],
+  "53": [
+    "pattern_moving"
+  ],
+  "54": [
+    "pattern_repetition",
+    "pattern_juxtaposition",
+    "draw_line_from_point"
+  ],
+  "55": [
+    "detect_grid",
+    "mimic_pattern",
+    "grid_coloring"
+  ],
+  "56": [
+    "associate_colors_to_patterns",
+    "take_negative",
+    "associate_images_to_patterns"
+  ],
+  "57": [
+    "crop",
+    "pattern_repetition"
+  ],
+  "58": [
+    "ex_nihilo",
+    "mimic_pattern"
+  ],
+  "59": [
+    "detect_grid",
+    "separate_images",
+    "count_tiles",
+    "take_maximum",
+    "grid_coloring"
+  ],
+  "60": [
+    "draw_line_from_point",
+    "count_tiles"
+  ],
+  "61": [
+    "image_filling",
+    "pattern_expansion",
+    "detect_grid",
+    "pattern_repetition"
+  ],
+  "62": [
+    "pattern_reflection",
+    "direction_guessing",
+    "image_filling",
+    "background_filling"
+  ],
+  "63": [
+    "draw_line_from_border",
+    "count_tiles",
+    "take_maximum"
+  ],
+  "64": [
+    "draw_line_from_point",
+    "projection_unto_rectangle"
+  ],
+  "65": [
+    "detect_grid",
+    "find_the_intruder",
+    "crop"
+  ],
+  "66": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "maze"
+  ],
+  "67": [
+    "detect_repetition",
+    "crop",
+    "divide_by_n"
+  ],
+  "68": [
+    "find_the_intruder",
+    "remove_noise",
+    "contouring"
+  ],
+  "69": [
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "70": [
+    "find_the_intruder",
+    "recoloring"
+  ],
+  "71": [
+    "pattern_completion",
+    "pattern_reflection",
+    "remove_noise"
+  ],
+  "72": [
+    "detect_wall",
+    "separate_images",
+    "pattern_differences"
+  ],
+  "73": [
+    "gravity"
+  ],
+  "74": [
+    "image_filling",
+    "pattern_expansion",
+    "pattern_rotation"
+  ],
+  "75": [
+    "detect_wall",
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "76": [
+    "pattern_repetition",
+    "pattern_juxtaposition",
+    "pattern_reflection",
+    "pattern_rotation"
+  ],
+  "77": [
+    "recoloring",
+    "rectangle_guessing"
+  ],
+  "78": [
+    "gravity"
+  ],
+  "79": [
+    "count_patterns",
+    "take_maximum",
+    "crop"
+  ],
+  "80": [
+    "detect_grid",
+    "pattern_repetition",
+    "grid_coloring"
+  ],
+  "81": [
+    "pattern_completion",
+    "pattern_rotation"
+  ],
+  "82": [
+    "draw_pattern_from_point",
+    "pattern_repetition"
+  ],
+  "83": [
+    "image_repetition",
+    "image_reflection",
+    "image_rotation"
+  ],
+  "84": [
+    "draw_line_from_border",
+    "diagonals",
+    "pattern_repetition"
+  ],
+  "85": [
+    "recoloring",
+    "pattern_repetition",
+    "holes"
+  ],
+  "86": [
+    "take_negative",
+    "pattern_expansion"
+  ],
+  "87": [
+    "image_rotation"
+  ],
+  "88": [
+    "take_negative",
+    "crop",
+    "rectangle_guessing"
+  ],
+  "89": [
+    "pattern_repetition",
+    "pattern_juxtaposition",
+    "direction_guessing",
+    "pattern_reflection"
+  ],
+  "90": [
+    "rectangle_guessing",
+    "recoloring",
+    "measure_area",
+    "take_maximum"
+  ],
+  "91": [
+    "crop",
+    "rectangle_guessing",
+    "find_the_intruder"
+  ],
+  "92": [
+    "connect_the_dots"
+  ],
+  "93": [
+    "gravity",
+    "recoloring",
+    "projection_unto_rectangle"
+  ],
+  "94": [
+    "draw_line_from_point",
+    "pattern_repetition"
+  ],
+  "95": [
+    "pattern_repetition",
+    "contouring"
+  ],
+  "96": [
+    "pattern_moving",
+    "concentric",
+    "crop"
+  ],
+  "97": [
+    "remove_noise",
+    "count_tiles"
+  ],
+  "98": [
+    "loop_filling",
+    "color_guessing"
+  ],
+  "99": [
+    "pattern_repetition",
+    "pattern_expansion",
+    "rectangle_guessing"
+  ],
+  "100": [
+    "measure_area",
+    "take_maximum"
+  ],
+  "101": [
+    "pattern_repetition",
+    "draw_pattern_from_point",
+    "pattern_resizing"
+  ],
+  "102": [
+    "loop_filling",
+    "rectangle_guessing"
+  ],
+  "103": [
+    "detect_symmetry",
+    "associate_images_to_bools"
+  ],
+  "104": [
+    "image_rotation",
+    "pairwise_analogy"
+  ],
+  "105": [
+    "pattern_completion",
+    "rectangle_guessing"
+  ],
+  "106": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "107": [
+    "image_resizing",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "108": [
+    "pattern_resizing",
+    "image_resizing"
+  ],
+  "109": [
+    "detect_grid",
+    "find_the_intruder",
+    "crop",
+    "recolor",
+    "color_guessing",
+    "image_repetition",
+    "image_reflection"
+  ],
+  "110": [
+    "image_filling",
+    "pattern_expansion",
+    "pattern_repetition"
+  ],
+  "111": [
+    "find_the_intruder",
+    "crop"
+  ],
+  "112": [
+    "pattern_expansion",
+    "pattern_rotation",
+    "pattern_reflection"
+  ],
+  "113": [
+    "pattern_reflection"
+  ],
+  "114": [
+    "pattern_expansion",
+    "image_expansion"
+  ],
+  "115": [
+    "summarize"
+  ],
+  "116": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "117": [
+    "pattern_expansion",
+    "pattern_rotation",
+    "pattern_reflection"
+  ],
+  "118": [
+    "pattern_completion",
+    "recoloring"
+  ],
+  "119": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "pattern_reflection"
+  ],
+  "120": [
+    "holes",
+    "rectangle_guessing"
+  ],
+  "121": [
+    "find_the_intruder",
+    "crop",
+    "recoloring"
+  ],
+  "122": [
+    "direction_guessing",
+    "recoloring",
+    "contouring",
+    "pattern_moving"
+  ],
+  "123": [
+    "pattern_expansion",
+    "image_expansion"
+  ],
+  "124": [
+    "pattern_expansion",
+    "image_expansion"
+  ],
+  "125": [
+    "contouring",
+    "loop_filling"
+  ],
+  "126": [
+    "pattern_expansion",
+    "gravity"
+  ],
+  "127": [
+    "detect_grid",
+    "separate_images",
+    "associate_images_to_images"
+  ],
+  "128": [
+    "pattern_moving",
+    "measure_length"
+  ],
+  "129": [
+    "count_tiles",
+    "dominant_color"
+  ],
+  "130": [
+    "remove_noise",
+    "image_resizing"
+  ],
+  "131": [
+    "gravity",
+    "direction_guessing",
+    "pattern_expansion"
+  ],
+  "132": [
+    "pattern_completion",
+    "rectangle_guessing"
+  ],
+  "133": [
+    "draw_pattern_from_point",
+    "pattern_repetition",
+    "pattern_resizing"
+  ],
+  "134": [
+    "color_guessing",
+    "remove_noise",
+    "recoloring",
+    "crop",
+    "image_resizing"
+  ],
+  "135": [
+    "rectangle_guessing",
+    "crop"
+  ],
+  "136": [
+    "draw_line_from_point",
+    "diagonals",
+    "direction_guessing"
+  ],
+  "137": [
+    "rectangle_guessing",
+    "pattern_expansion"
+  ],
+  "138": [
+    "detect_grid",
+    "crop",
+    "draw_line_from_point",
+    "direction_guessing"
+  ],
+  "139": [
+    "pattern_completion"
+  ],
+  "140": [
+    "image_rotation"
+  ],
+  "141": [
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "142": [
+    "image_repetition",
+    "image_reflection",
+    "image_rotation"
+  ],
+  "143": [
+    "recoloring",
+    "compare_image",
+    "detect_wall"
+  ],
+  "144": [
+    "detect_wall",
+    "separate_images",
+    "take_complement",
+    "pattern_intersection"
+  ],
+  "145": [
+    "measure_area",
+    "take_maximum",
+    "take_minimum",
+    "loop_filling",
+    "associate_colors_to_ranks"
+  ],
+  "146": [
+    "separate_images",
+    "detect_symmetry",
+    "find_the_intruder",
+    "crop"
+  ],
+  "147": [
+    "recoloring",
+    "measure_area",
+    "associate_colors_to_bools"
+  ],
+  "148": [
+    "recoloring",
+    "draw_line_from_point",
+    "portals"
+  ],
+  "149": [
+    "detect_grid",
+    "separate_images",
+    "count_tiles",
+    "associate_colors_to_numbers"
+  ],
+  "150": [
+    "image_reflection"
+  ],
+  "151": [
+    "pattern_intersection",
+    "contouring"
+  ],
+  "152": [
+    "image_repetition",
+    "image_reflection",
+    "image_rotation"
+  ],
+  "153": [
+    "pattern_moving",
+    "jigsaw",
+    "crop",
+    "bring_patterns_close"
+  ],
+  "154": [
+    "pattern_moving",
+    "direction_guessing",
+    "x_marks_the_spot"
+  ],
+  "155": [
+    "image_reflection"
+  ],
+  "156": [
+    "rectangle_guessing",
+    "loop_filling",
+    "measure_area",
+    "associate_colors_to_ranks"
+  ],
+  "157": [
+    "pattern_moving",
+    "jigsaw",
+    "recoloring"
+  ],
+  "158": [
+    "pattern_repetition",
+    "pattern_juxtaposition",
+    "pattern_resizing"
+  ],
+  "159": [
+    "pattern_moving",
+    "pattern_resizing",
+    "crop",
+    "x_marks_the_spot"
+  ],
+  "160": [
+    "replace_pattern"
+  ],
+  "161": [
+    "connect_the_dots",
+    "find_the_intruder",
+    "remove_noise"
+  ],
+  "162": [
+    "rectangle_guessing",
+    "recoloring"
+  ],
+  "163": [
+    "detect_grid",
+    "separate_image",
+    "find_the_intruder",
+    "pattern_moving"
+  ],
+  "164": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "165": [
+    "draw_line_from_point"
+  ],
+  "166": [
+    "rectangle_guessing",
+    "pattern_completion"
+  ],
+  "167": [
+    "count_different_colors",
+    "associate_images_to_numbers"
+  ],
+  "168": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "diagonals"
+  ],
+  "169": [
+    "recoloring",
+    "count_tiles",
+    "associate_colors_to_numbers"
+  ],
+  "170": [
+    "color_palette",
+    "recoloring",
+    "pattern_resizing",
+    "crop"
+  ],
+  "171": [
+    "ex_nihilo",
+    "contouring"
+  ],
+  "172": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "173": [
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "174": [
+    "find_the_intruder",
+    "detect_symmetry",
+    "crop"
+  ],
+  "175": [
+    "image_filling",
+    "diagonal_symmetry"
+  ],
+  "176": [
+    "pattern_expansion",
+    "pairwise_analogy"
+  ],
+  "177": [
+    "crop",
+    "image_reflection"
+  ],
+  "178": [
+    "crop",
+    "direction_guessing"
+  ],
+  "179": [
+    "image_reflection",
+    "diagonal_symmetry"
+  ],
+  "180": [
+    "separate_images",
+    "image_juxtaposition"
+  ],
+  "181": [
+    "pattern_reflection",
+    "direction_guessing"
+  ],
+  "182": [
+    "recoloring",
+    "associate_colors_to_patterns",
+    "detect_enclosure",
+    "find_the_intruder"
+  ],
+  "183": [
+    "recoloring",
+    "color_guessing",
+    "detect_grid",
+    "crop"
+  ],
+  "184": [
+    "detect_grid",
+    "summarize"
+  ],
+  "185": [
+    "detect_grid",
+    "color_guessing",
+    "grid_coloring",
+    "crop",
+    "extrapolate_image_from_grid"
+  ],
+  "186": [
+    "count_tiles",
+    "associate_images_to_numbers"
+  ],
+  "187": [
+    "loop_filling",
+    "background_filling",
+    "color_guessing"
+  ],
+  "188": [
+    "separate_images",
+    "detect_repetition",
+    "crop"
+  ],
+  "189": [
+    "color_palette",
+    "detect_grid",
+    "recoloring",
+    "color_guessing",
+    "separate_images",
+    "crop"
+  ],
+  "190": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "diagonals"
+  ],
+  "191": [
+    "pattern_repetition",
+    "pattern_rotation",
+    "pattern_juxtaposition",
+    "out_of_boundary"
+  ],
+  "192": [
+    "color_guessing",
+    "remove_noise"
+  ],
+  "193": [
+    "rectangle_guessing",
+    "remove_noise"
+  ],
+  "194": [
+    "image_repetition",
+    "image_rotation"
+  ],
+  "195": [
+    "crop",
+    "pattern_resizing",
+    "image_resizing",
+    "fractal_repetition"
+  ],
+  "196": [
+    "recoloring",
+    "detect_closed_curves"
+  ],
+  "197": [
+    "pattern_repetition",
+    "color_guessing",
+    "draw_line_from_point",
+    "associate_colors_to_colors"
+  ],
+  "198": [
+    "detect_grid",
+    "detect_closed_curves",
+    "rectangle_guessing",
+    "associate_colors_to_bools",
+    "loop_filling"
+  ],
+  "199": [
+    "draw_line_from_border",
+    "pattern_repetition",
+    "spacing",
+    "measure_distance_from_side"
+  ],
+  "200": [
+    "draw_line_from_point",
+    "pattern_repetition",
+    "direction_guessing"
+  ],
+  "201": [
+    "pattern_moving",
+    "pattern_reflection",
+    "crop",
+    "color_matching",
+    "x_marks_the_spot"
+  ],
+  "202": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "separate_images",
+    "holes"
+  ],
+  "203": [
+    "color_guessing",
+    "recoloring",
+    "color_permutation"
+  ],
+  "204": [
+    "loop_filling",
+    "color_guessing",
+    "measure_area",
+    "even_or_odd",
+    "associate_colors_to_bools"
+  ],
+  "205": [
+    "rectangle_guessing",
+    "crop",
+    "draw_line_from_point"
+  ],
+  "206": [
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "207": [
+    "detect_grid",
+    "separate_images",
+    "find_the_intruder",
+    "crop"
+  ],
+  "208": [
+    "pattern_repetition",
+    "rectangle_guessing",
+    "contouring"
+  ],
+  "209": [
+    "pattern_repetition",
+    "pattern_resizing",
+    "pattern_juxtaposition",
+    "rectangle_guessing",
+    "crop"
+  ],
+  "210": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "211": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "212": [
+    "draw_line_from_point",
+    "detect_wall",
+    "direction_guessing",
+    "associate_colors_to_bools"
+  ],
+  "213": [
+    "recoloring",
+    "color_guessing",
+    "direction_guesingcrop",
+    "image_within_image"
+  ],
+  "214": [
+    "detect_wall",
+    "separate_images",
+    "image_repetition",
+    "image_rotation"
+  ],
+  "215": [
+    "pattern_repetition",
+    "image_filling"
+  ],
+  "216": [
+    "separate_images",
+    "rectangle_guessing",
+    "count_tiles",
+    "take_maximum",
+    "crop"
+  ],
+  "217": [
+    "crop",
+    "fractal_repetition"
+  ],
+  "218": [
+    "crop",
+    "rectangle_guessing",
+    "summarize"
+  ],
+  "219": [
+    "pattern_repetition",
+    "recoloring"
+  ],
+  "220": [
+    "contouring",
+    "associate_colors_to_colors"
+  ],
+  "221": [
+    "count_tiles",
+    "algebra",
+    "image_repetition"
+  ],
+  "222": [
+    "find_the_intruder",
+    "remove_noise"
+  ],
+  "223": [
+    "image_resizing"
+  ],
+  "224": [
+    "rectangle_guessing",
+    "color_guessing",
+    "draw_rectangle"
+  ],
+  "225": [
+    "pattern_expansion",
+    "color_guessing",
+    "out_of_boundary"
+  ],
+  "226": [
+    "detect_grid",
+    "loop_filling",
+    "pairwise_analogy"
+  ],
+  "227": [
+    "separate_images",
+    "take_complement",
+    "pattern_intersection"
+  ],
+  "228": [
+    "rectangle_guessing",
+    "inside_out"
+  ],
+  "229": [
+    "separate_shapes",
+    "count_tiles",
+    "recoloring",
+    "take_maximum",
+    "associate_color_to_bools"
+  ],
+  "230": [
+    "pattern_expansion"
+  ],
+  "231": [
+    "image_expansion",
+    "pattern_expansion"
+  ],
+  "232": [
+    "draw_line_from_point",
+    "pattern_expansion"
+  ],
+  "233": [
+    "pattern_moving",
+    "pattern_juxtaposition",
+    "crop",
+    "shape_guessing"
+  ],
+  "234": [
+    "pattern_moving",
+    "bring_patterns_close"
+  ],
+  "235": [
+    "take_complement",
+    "detect_wall",
+    "separate_images",
+    "associate_colors_to_images",
+    "summarize"
+  ],
+  "236": [
+    "take_complement",
+    "detect_wall",
+    "separate_images",
+    "pattern_intersection"
+  ],
+  "237": [
+    "draw_line_from_point",
+    "pattern_expansion"
+  ],
+  "238": [
+    "pattern_moving",
+    "x_marks_the_spot",
+    "crop",
+    "recoloring",
+    "color_guessing"
+  ],
+  "239": [
+    "separate_images",
+    "count_tiles",
+    "summarize",
+    "order_numbers"
+  ],
+  "240": [
+    "pattern_expansion",
+    "pattern_reflection",
+    "pattern_rotation"
+  ],
+  "241": [
+    "image_reflection",
+    "diagonal_symmetry"
+  ],
+  "242": [
+    "image_filling",
+    "pattern_expansion",
+    "pattern_reflection",
+    "pattern_rotation",
+    "crop"
+  ],
+  "243": [
+    "background_filling",
+    "holes"
+  ],
+  "244": [
+    "detect_grid",
+    "summarize",
+    "image_reflection"
+  ],
+  "245": [
+    "pattern_moving",
+    "rectangle_guessing",
+    "x_marks_the_spot"
+  ],
+  "246": [
+    "connect_the_dots"
+  ],
+  "247": [
+    "separate_shapes",
+    "count_tiles",
+    "take_maximum",
+    "summarize",
+    "remove_intruders"
+  ],
+  "248": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "diagonals",
+    "bounce"
+  ],
+  "249": [
+    "image_repetition"
+  ],
+  "250": [
+    "pattern_moving",
+    "bring_patterns_close",
+    "gravity",
+    "direction_guessing"
+  ],
+  "251": [
+    "loop_filling"
+  ],
+  "252": [
+    "recoloring",
+    "pattern_modification",
+    "pairwise_analogy"
+  ],
+  "253": [
+    "pattern_moving",
+    "bring_patterns_close",
+    "crop",
+    "jigsaw"
+  ],
+  "254": [
+    "separate_shapes",
+    "count_tiles",
+    "take_maximum",
+    "take_minimum",
+    "recoloring",
+    "associate_colors_to_ranks",
+    "remove_intruders"
+  ],
+  "255": [
+    "background_filling",
+    "rectangle_guessing"
+  ],
+  "256": [
+    "pattern_expansion",
+    "count_tiles",
+    "associate_colors_to_ranks"
+  ],
+  "257": [
+    "detect_grid",
+    "separate_images",
+    "pattern_juxtaposition"
+  ],
+  "258": [
+    "pattern_expansion",
+    "connect_the_dots"
+  ],
+  "259": [
+    "crop",
+    "detect_background_color",
+    "recoloring"
+  ],
+  "260": [
+    "draw_parallel_line",
+    "direction_guessing",
+    "remove_intruders"
+  ],
+  "261": [
+    "pattern_moving",
+    "recoloring",
+    "pairwise_analogy"
+  ],
+  "262": [
+    "separate_images",
+    "associate_colors_to_images",
+    "summarize"
+  ],
+  "263": [
+    "separate_images",
+    "find_the_intruder",
+    "crop"
+  ],
+  "264": [
+    "pattern_moving",
+    "jigsaw",
+    "crop"
+  ],
+  "265": [
+    "recoloring",
+    "rectangle_guessing"
+  ],
+  "266": [
+    "replace_pattern",
+    "out_of_boundary"
+  ],
+  "267": [
+    "recoloring",
+    "color_guessing",
+    "remove_intruders"
+  ],
+  "268": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "269": [
+    "image_resizing",
+    "count_tiles",
+    "size_guessing"
+  ],
+  "270": [
+    "bring_patterns_close",
+    "gravity"
+  ],
+  "271": [
+    "separate_images",
+    "count_tiles",
+    "crop"
+  ],
+  "272": [
+    "recoloring",
+    "separate_shapes",
+    "count_tiles",
+    "take_minimum",
+    "associate_colors_to_bools"
+  ],
+  "273": [
+    "ex_nihilo",
+    "x_marks_the_spot"
+  ],
+  "274": [
+    "measure_length",
+    "associate_images_to_numbers"
+  ],
+  "275": [
+    "separate_images",
+    "image_expasion",
+    "color_palette",
+    "image_resizing",
+    "replace_pattern"
+  ],
+  "276": [
+    "recoloring",
+    "associate_colors_to_colors"
+  ],
+  "277": [
+    "recoloring",
+    "separate_shapes",
+    "find_the_intruder",
+    "associate_colors_to_bools"
+  ],
+  "278": [
+    "find_the_intruder",
+    "count_tiles",
+    "contouring"
+  ],
+  "279": [
+    "recoloring",
+    "detect_closed_curves",
+    "associate_colors_to_bools"
+  ],
+  "280": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "contouring",
+    "direction_guessing",
+    "size_guessing"
+  ],
+  "281": [
+    "pattern_expansion",
+    "pattern_modification",
+    "x_marks_the_spot"
+  ],
+  "282": [
+    "replace_pattern"
+  ],
+  "283": [
+    "recoloring",
+    "replace_pattern",
+    "rectangle_guessing"
+  ],
+  "284": [
+    "pattern_expansion"
+  ],
+  "285": [
+    "pattern_expansion",
+    "pattern_repetition",
+    "recoloring",
+    "pattern_rotation",
+    "pattern_reflection",
+    "direction_guessing",
+    "pattern_juxtaposition"
+  ],
+  "286": [
+    "pattern_expansion",
+    "maze"
+  ],
+  "287": [
+    "pattern_completion",
+    "pattern_rotation",
+    "pattern_reflection"
+  ],
+  "288": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "diagonals",
+    "pairwise_analogy"
+  ],
+  "289": [
+    "image_resizing",
+    "size_guessing",
+    "count_different_colors"
+  ],
+  "290": [
+    "crop",
+    "take_negative"
+  ],
+  "291": [
+    "find_the_intruder",
+    "summarize"
+  ],
+  "292": [
+    "pattern_modification",
+    "pairwise_analogy",
+    "recoloring"
+  ],
+  "293": [
+    "pattern_modification",
+    "pairwise_analogy",
+    "rettangle_guessing",
+    "recoloring"
+  ],
+  "294": [
+    "loop_filling",
+    "rettangle_guessing"
+  ],
+  "295": [
+    "pattern_expansion",
+    "image_expansion"
+  ],
+  "296": [
+    "pattern_moving",
+    "pattern_juxtaposition",
+    "crop",
+    "pairwise_analogy"
+  ],
+  "297": [
+    "detect_wall",
+    "pattern_expansion",
+    "ex_nihilo",
+    "color_guessing",
+    "color_palette"
+  ],
+  "298": [
+    "recoloring",
+    "pairwise_analogy",
+    "pattern_modification",
+    "color_permutation"
+  ],
+  "299": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "recoloring",
+    "take_intersection"
+  ],
+  "300": [
+    "separate_shapes",
+    "count_tiles",
+    "take_maximum",
+    "crop"
+  ],
+  "301": [
+    "pattern_moving",
+    "count_tiles",
+    "order_numbers"
+  ],
+  "302": [
+    "loop_filling",
+    "measure_area",
+    "associate_colors_to_numbers"
+  ],
+  "303": [
+    "draw_line_from_border",
+    "detect_grid"
+  ],
+  "304": [
+    "image_repetition",
+    "image_expansion",
+    "count_different_colors",
+    "take_maximum"
+  ],
+  "305": [
+    "pattern_expansion",
+    "image_filling"
+  ],
+  "306": [
+    "detect_grid",
+    "separate_images",
+    "find_the_intruder",
+    "image_repetition"
+  ],
+  "307": [
+    "image_resizing"
+  ],
+  "308": [
+    "pattern_moving",
+    "jigsaw",
+    "crop"
+  ],
+  "309": [
+    "recoloring",
+    "associate_colors_to_colors"
+  ],
+  "310": [
+    "find_the_intruder",
+    "crop",
+    "rectangle_guessing"
+  ],
+  "311": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "312": [
+    "recoloring",
+    "pattern_repetition",
+    "color_palette"
+  ],
+  "313": [
+    "pattern_expansion",
+    "image_filling"
+  ],
+  "314": [
+    "detect_grid",
+    "separate_images",
+    "pattern_modification",
+    "pattern_repetition",
+    "pattern_juxtaposition",
+    "connect_the_dots"
+  ],
+  "315": [
+    "image_repetition",
+    "image_expansion",
+    "pairwise_analogy"
+  ],
+  "316": [
+    "summarize",
+    "pairwise_analogy"
+  ],
+  "317": [
+    "replace_pattern"
+  ],
+  "318": [
+    "detect_wall",
+    "separate_images",
+    "take_complement",
+    "take_intersection"
+  ],
+  "319": [
+    "crop",
+    "size_guessing",
+    "shape_guessing",
+    "find_the_intruder",
+    "remove_intruder"
+  ],
+  "320": [
+    "recoloring",
+    "count_tiles",
+    "take_half"
+  ],
+  "321": [
+    "detect_wall",
+    "separate_images",
+    "pattern_juxtaposition"
+  ],
+  "322": [
+    "pattern_expansion",
+    "draw_line_from_point"
+  ],
+  "323": [
+    "pattern_expansion",
+    "pairwise_analogy"
+  ],
+  "324": [
+    "draw_line_from_point",
+    "diagonals",
+    "color_guessing"
+  ],
+  "325": [
+    "separate_shapes",
+    "count_shapes",
+    "associate_images_to_numbers",
+    "pairwise_analogy"
+  ],
+  "326": [
+    "crop"
+  ],
+  "327": [
+    "image_expansion",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "328": [
+    "pattern_expansion",
+    "pairwise_analogy"
+  ],
+  "329": [
+    "crop",
+    "image_expansion"
+  ],
+  "330": [
+    "separate_shapes",
+    "count_tiles",
+    "associate_colors_to_numbers",
+    "recoloring"
+  ],
+  "331": [
+    "pattern_expansion"
+  ],
+  "332": [
+    "recoloring",
+    "one_yes_one_no",
+    "cylindrical"
+  ],
+  "333": [
+    "draw_line_from_point",
+    "direction_guessing",
+    "projection_unto_rectangle"
+  ],
+  "334": [
+    "dominant_color",
+    "associate_images_to_colors"
+  ],
+  "335": [
+    "connect_the_dots",
+    "direction_guessing"
+  ],
+  "336": [
+    "rectangle_guessing",
+    "recoloring",
+    "draw_line_from_point"
+  ],
+  "337": [
+    "associate_colors_to_colors"
+  ],
+  "338": [
+    "loop_filling",
+    "replace_pattern",
+    "remove_intruders"
+  ],
+  "339": [
+    "count_tiles",
+    "dominant_color",
+    "summarize"
+  ],
+  "340": [
+    "bring_patterns_close",
+    "gravity",
+    "direction_guessing",
+    "find_the_intruder",
+    "remove_intruders"
+  ],
+  "341": [
+    "bridges",
+    "connect_the_dots",
+    "draw_line_from_point"
+  ],
+  "342": [
+    "pattern_juxtaposition",
+    "summarize",
+    "direction_guessing"
+  ],
+  "343": [
+    "pattern_expansion",
+    "pattern_repetition",
+    "pattern_completion"
+  ],
+  "344": [
+    "replace_pattern"
+  ],
+  "345": [
+    "draw_line_from_point",
+    "gravity",
+    "obstacles"
+  ],
+  "346": [
+    "find_the_intruder",
+    "summarize",
+    "x_marks_the_spot"
+  ],
+  "347": [
+    "pattern_juxtaposition",
+    "separate_images",
+    "recoloring"
+  ],
+  "348": [
+    "pattern_expansion",
+    "out_of_boundary"
+  ],
+  "349": [
+    "contouring",
+    "draw_line_from_point",
+    "measure_area",
+    "measure_length",
+    "algebra"
+  ],
+  "350": [
+    "connect_the_dots"
+  ],
+  "351": [
+    "pattern_completion",
+    "crop"
+  ],
+  "352": [
+    "contouring",
+    "pattern_expansion",
+    "out_of_boundary"
+  ],
+  "353": [
+    "pattern_moving",
+    "direction_guessing",
+    "only_one"
+  ],
+  "354": [
+    "color_palette",
+    "recoloring"
+  ],
+  "355": [
+    "separate_images",
+    "count_tiles",
+    "take_maximum",
+    "summarize"
+  ],
+  "356": [
+    "connect_the_dots"
+  ],
+  "357": [
+    "pattern_expansion",
+    "bouncing"
+  ],
+  "358": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "color_palette"
+  ],
+  "359": [
+    "remove_noise",
+    "separate_images"
+  ],
+  "360": [
+    "detect_wall",
+    "separate_images",
+    "image_reflection",
+    "image_juxtaposition"
+  ],
+  "361": [
+    "pattern_expansion",
+    "pattern_reflection",
+    "pattern_rotation"
+  ],
+  "362": [
+    "count_tiles",
+    "pattern_moving",
+    "detect_grid",
+    "out_of_boundary"
+  ],
+  "363": [
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "364": [
+    "recoloring",
+    "associate_colors_to_shapes",
+    "homeomorphism"
+  ],
+  "365": [
+    "separate_images",
+    "detect_background_color",
+    "crop",
+    "count_tiles",
+    "take_maximum"
+  ],
+  "366": [
+    "pattern_moving",
+    "pattern_juxtaposition",
+    "crop"
+  ],
+  "367": [
+    "loop_filling",
+    "rectangle_guessing"
+  ],
+  "368": [
+    "pattern_repetition",
+    "pattern_juxtaposition"
+  ],
+  "369": [
+    "holes",
+    "count_tiles",
+    "loop_filling",
+    "associate_colors_to_numbers"
+  ],
+  "370": [
+    "pattern_expansion",
+    "direction_guessing"
+  ],
+  "371": [
+    "pattern_expansion",
+    "direction_guessing",
+    "measure_length"
+  ],
+  "372": [
+    "detect_wall",
+    "separate_images",
+    "image_juxtaposition"
+  ],
+  "373": [
+    "pattern_modification"
+  ],
+  "374": [
+    "separate_shapes",
+    "count_tiles",
+    "recoloring",
+    "associate_colors_to_ranks"
+  ],
+  "375": [
+    "pattern_modification",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "376": [
+    "image_repetition",
+    "image_reflection"
+  ],
+  "377": [
+    "summarize"
+  ],
+  "378": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "379": [
+    "pattern_modification",
+    "draw_line_from_point"
+  ],
+  "380": [
+    "image_rotation"
+  ],
+  "381": [
+    "draw_line_from_point",
+    "bridges",
+    "connect_the_dots"
+  ],
+  "382": [
+    "draw_line_from_point",
+    "gravity",
+    "obstacles",
+    "direction_guessing"
+  ],
+  "383": [
+    "draw_line_from_point",
+    "pattern_modification"
+  ],
+  "384": [
+    "crop",
+    "image_resizing"
+  ],
+  "385": [
+    "pattern_repetition",
+    "pattern_reflection"
+  ],
+  "386": [
+    "detect_wall",
+    "separate_images",
+    "take_complement",
+    "pattern_intersection"
+  ],
+  "387": [
+    "pattern_expansion"
+  ],
+  "388": [
+    "pattern_expansion",
+    "draw_line_from_point",
+    "image_repetition"
+  ],
+  "389": [
+    "take_negative",
+    "recoloring",
+    "associate_colors_to_colors"
+  ],
+  "390": [
+    "pattern_moving",
+    "pattern_reflection"
+  ],
+  "391": [
+    "detect_grid",
+    "find_the_intruder",
+    "dominant_color",
+    "count_tiles",
+    "summarize",
+    "order_numbers"
+  ],
+  "392": [
+    "pattern_expansion",
+    "background_filling"
+  ],
+  "393": [
+    "separate_shapes",
+    "count_tiles",
+    "summarize",
+    "order_numbers"
+  ],
+  "394": [
+    "pattern_expansion",
+    "pattern_completion",
+    "crop"
+  ],
+  "395": [
+    "separate_images",
+    "take_complement",
+    "pattern_intersection"
+  ],
+  "396": [
+    "rectangle_guessing",
+    "separate_images",
+    "count_tiles",
+    "take_maximum",
+    "crop",
+    "recoloring"
+  ],
+  "397": [
+    "pattern_expansion",
+    "separate_images",
+    "count_different_colors"
+  ],
+  "398": [
+    "pattern_expansion",
+    "image_expansion",
+    "draw_line_from_point",
+    "diagonals"
+  ],
+  "399": [
+    "count_shapes",
+    "associate_images_to_numbers"
+  ],
+  "400": [
+    "pattern_expansion",
+    "pattern_completion",
+    "crop"
+  ]
+}

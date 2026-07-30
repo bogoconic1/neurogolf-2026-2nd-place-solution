@@ -1,0 +1,151 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import numpy as np
+import onnx
+from onnx import AttributeProto, TensorProto, helper, numpy_helper
+
+
+TASK_ID = 'task060'
+TASK_NUM = 60
+KAGGLE = {'score': 20.50019, 'date': '2026-07-09'}
+MEMORY_BYTES = 0
+PARAMS = 90
+OUT = Path(__file__).with_suffix(".onnx")
+
+IR_VERSION = 10
+PRODUCER_NAME = 'task060_updated_v8_row_sum_metric_underflow'
+PRODUCER_VERSION = ''
+DOMAIN = ''
+MODEL_VERSION = 0
+GRAPH_NAME = 'task060_updated_v8'
+OPSETS = [('', 18)]
+
+
+# F: FLOAT[3, 10], 30 value(s)
+INIT_F_0 = [-1.7821897699832334e-06, -5.1004385568376165e-06, -1.1531615200510714e-05, -6.52339804219082e-06,
+ -1.1890214409504551e-05, 2.478192016042158e-07, -1.2348478776402771e-05, -5.840790890943026e-06,
+ -1.372750284645008e-05, -8.72409509611316e-06, -2.2865974642627407e-06, 1.7431639207643457e-05, 1.9588562281569466e-05,
+ 2.094909541483503e-05, -7.768251180095831e-07, 7.553593661668856e-08, -1.6674213838996366e-05, 1.193478237837553e-05,
+ -8.653221811982803e-06, 5.162282377568772e-06, -1.4613710845878813e-06, 1.0429719623061828e-05,
+ -1.3339442375581712e-05, 2.364665078857797e-06, -1.724275352898985e-05, 3.507071255626215e-08, 4.703228114522062e-06,
+ 1.656626227486413e-05, 2.308380135218613e-05, 2.1504909454961307e-05]
+
+# Q: FLOAT[2, 30], 60 value(s)
+INIT_Q_1 = [1.0, 1.0, 1.0, 1.0, 1.0, 0.0, -1.0, -1.0, -1.0, -1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+
+NP_DTYPE = {
+    TensorProto.FLOAT: np.float32,
+    TensorProto.UINT8: np.uint8,
+    TensorProto.INT8: np.int8,
+    TensorProto.UINT16: np.uint16,
+    TensorProto.INT16: np.int16,
+    TensorProto.INT32: np.int32,
+    TensorProto.INT64: np.int64,
+    TensorProto.BOOL: np.bool_,
+    TensorProto.FLOAT16: np.float16,
+    TensorProto.DOUBLE: np.float64,
+    TensorProto.UINT32: np.uint32,
+    TensorProto.UINT64: np.uint64,
+}
+
+
+def _num(value):
+    if value == "inf":
+        return float("inf")
+    if value == "-inf":
+        return float("-inf")
+    if value == "nan":
+        return float("nan")
+    return value
+
+
+def _tensor(name: str, elem_type: int, shape: tuple[int, ...], values: list) -> onnx.TensorProto:
+    if elem_type == TensorProto.STRING:
+        vals = [v.encode("utf-8") if isinstance(v, str) else v for v in values]
+        return helper.make_tensor(name=name, data_type=TensorProto.STRING, dims=list(shape), vals=vals)
+    flat = [_num(value) for value in values]
+    array = np.asarray(flat, dtype=NP_DTYPE[elem_type]).reshape(shape)
+    return numpy_helper.from_array(array, name=name)
+
+
+def _vi(name: str, elem_type: int, shape: list[int | str | None]) -> onnx.ValueInfoProto:
+    return helper.make_tensor_value_info(name, elem_type, shape)
+
+
+class _EmptyAttr:
+    # Sentinel for an EMPTY list-valued attribute (INTS/FLOATS/STRINGS, e.g. a scalar
+    # RandomUniform's shape=[]). helper.make_node() cannot infer the attribute type from a
+    # bare [], so _node() re-adds these with an explicit attr_type after building the node.
+    __slots__ = ("kind",)
+
+    def __init__(self, kind: str) -> None:
+        self.kind = kind
+
+
+def _node(op_type, inputs, outputs, name="", domain="", **attrs):
+    empties = [(k, v.kind) for k, v in attrs.items() if isinstance(v, _EmptyAttr)]
+    for k, _ in empties:
+        attrs.pop(k)
+    node = helper.make_node(op_type, inputs, outputs, name=name, domain=domain, **attrs)
+    for k, kind in empties:
+        node.attribute.append(helper.make_attribute(k, [], attr_type=getattr(AttributeProto, kind)))
+    return node
+
+
+def make_onnx() -> onnx.ModelProto:
+    nodes = [
+        # 0: Einsum inputs=18 outputs=1
+        _node(
+            'Einsum',
+            ['Q', 'input', 'F', 'F', 'Q', 'input', 'F', 'F', 'F', 'F', 'Q', 'input', 'F', 'F', 'Q', 'Q', 'Q',
+             'F'],
+            ['output'],
+            name='row_sum_metric_dotpower3_underflow_endpoint_fill',
+            domain='',
+            equation='mw,nchw,ac,au,kx,ndhx,bd,bv,bo,ao,ji,nehi,ge,go,js,ms,ks,gz->nohs',
+        ),
+    ]
+
+    graph = helper.make_graph(
+        nodes,
+        GRAPH_NAME,
+        [
+            _vi('input', TensorProto.FLOAT, [1, 10, 30, 30]),
+        ],
+        [
+            _vi('output', TensorProto.FLOAT, [1, 10, 30, 30]),
+        ],
+        initializer=[
+            _tensor('F', TensorProto.FLOAT, (3, 10), INIT_F_0),
+            _tensor('Q', TensorProto.FLOAT, (2, 30), INIT_Q_1),
+        ],
+        value_info=[
+
+        ],
+    )
+    model = helper.make_model(
+        graph,
+        opset_imports=[helper.make_opsetid(domain, version) for domain, version in OPSETS],
+        producer_name=PRODUCER_NAME,
+        producer_version=PRODUCER_VERSION,
+        domain=DOMAIN,
+        model_version=MODEL_VERSION,
+        doc_string="",
+    )
+    model.ir_version = IR_VERSION
+    onnx.checker.check_model(model)
+    return model
+
+
+def save_model(path: str | Path = OUT) -> None:
+    onnx.save_model(make_onnx(), path)
+
+
+if __name__ == "__main__":
+    save_model(sys.argv[1] if len(sys.argv) > 1 else OUT)

@@ -1,0 +1,10 @@
+from dsl import *
+from constants import *
+
+
+def solve_42a50994(I):
+    x1 = objects(I, T, T, T)
+    x2 = sizefilter(x1, ONE)
+    x3 = merge(x2)
+    O = cover(I, x3)
+    return O

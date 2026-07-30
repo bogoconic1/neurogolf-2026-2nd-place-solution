@@ -1,0 +1,35 @@
+from dsl import *
+from constants import *
+
+
+def solve_57aa92db(I):
+    x1 = objects(I, F, T, T)
+    x2 = objects(I, T, F, T)
+    x3 = lbind(lbind, colorcount)
+    x4 = fork(apply, x3, palette)
+    x5 = compose(maximum, x4)
+    x6 = compose(minimum, x4)
+    x7 = fork(subtract, x5, x6)
+    x8 = argmax(x1, x7)
+    x9 = leastcolor(x8)
+    x10 = normalize(x8)
+    x11 = matcher(first, x9)
+    x12 = sfilter(x10, x11)
+    x13 = ulcorner(x12)
+    x14 = colorfilter(x2, x9)
+    x15 = rbind(toobject, I)
+    x16 = lbind(remove, ZERO)
+    x17 = chain(first, x16, palette)
+    x18 = chain(x17, x15, outbox)
+    x19 = lbind(multiply, x13)
+    x20 = compose(x19, width)
+    x21 = fork(subtract, ulcorner, x20)
+    x22 = lbind(shift, x10)
+    x23 = compose(x22, x21)
+    x24 = fork(upscale, x23, width)
+    x25 = fork(recolor, x18, x24)
+    x26 = mapply(x25, x14)
+    x27 = paint(I, x26)
+    x28 = merge(x2)
+    O = paint(x27, x28)
+    return O

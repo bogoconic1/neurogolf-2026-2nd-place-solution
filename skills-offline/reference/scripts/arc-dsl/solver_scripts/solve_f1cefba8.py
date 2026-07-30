@@ -1,0 +1,36 @@
+from dsl import *
+from constants import *
+
+
+def solve_f1cefba8(I):
+    x1 = palette(I)
+    x2 = objects(I, F, F, T)
+    x3 = ofcolor(I, ZERO)
+    x4 = first(x2)
+    x5 = ulcorner(x4)
+    x6 = subgrid(x4, I)
+    x7 = power(trim, TWO)
+    x8 = x7(x6)
+    x9 = asindices(x8)
+    x10 = shift(x9, TWO_BY_TWO)
+    x11 = fill(x6, ZERO, x10)
+    x12 = leastcolor(x11)
+    x13 = remove(ZERO, x1)
+    x14 = other(x13, x12)
+    x15 = ofcolor(x11, x12)
+    x16 = shift(x15, x5)
+    x17 = ofcolor(I, x12)
+    x18 = uppermost(x17)
+    x19 = lowermost(x17)
+    x20 = matcher(first, x18)
+    x21 = matcher(first, x19)
+    x22 = fork(either, x20, x21)
+    x23 = sfilter(x16, x22)
+    x24 = difference(x16, x23)
+    x25 = mapply(vfrontier, x23)
+    x26 = mapply(hfrontier, x24)
+    x27 = combine(x25, x26)
+    x28 = intersection(x3, x27)
+    x29 = fill(I, x14, x27)
+    O = fill(x29, x12, x28)
+    return O

@@ -1,0 +1,38 @@
+from dsl import *
+from constants import *
+
+
+def solve_508bd3b6(I):
+    x1 = width(I)
+    x2 = objects(I, T, T, T)
+    x3 = argmin(x2, size)
+    x4 = argmax(x2, size)
+    x5 = ulcorner(x3)
+    x6 = urcorner(x3)
+    x7 = index(I, x5)
+    x8 = equality(x7, EIGHT)
+    x9 = branch(x8, x5, x6)
+    x10 = branch(x8, UNITY, DOWN_LEFT)
+    x11 = multiply(x10, x1)
+    x12 = double(x11)
+    x13 = add(x9, x12)
+    x14 = subtract(x9, x12)
+    x15 = connect(x13, x14)
+    x16 = fill(I, THREE, x15)
+    x17 = paint(x16, x4)
+    x18 = objects(x17, T, F, T)
+    x19 = rbind(adjacent, x4)
+    x20 = extract(x18, x19)
+    x21 = first(x20)
+    x22 = last(x21)
+    x23 = flip(x8)
+    x24 = branch(x23, UNITY, DOWN_LEFT)
+    x25 = multiply(x24, x1)
+    x26 = double(x25)
+    x27 = add(x22, x26)
+    x28 = subtract(x22, x26)
+    x29 = connect(x27, x28)
+    x30 = fill(x17, THREE, x29)
+    x31 = paint(x30, x3)
+    O = paint(x31, x4)
+    return O

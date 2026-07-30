@@ -16,10 +16,10 @@ import sys
 
 SNAP = "/tmp/harvest_runtime_v1_snap.txt"
 DL = os.path.expanduser("~/Downloads")
-BASE = os.path.expanduser("~/Documents/NeuroGolf-2026/claude-for-chrome-runtime-v1")
-MAN = os.path.expanduser(
-    "~/Documents/NeuroGolf-2026/zzz_sessions/onnx-harvest-manifest-runtime-v1.csv"
-)
+# repo root = four levels above this script (.../<root>/.claude/skills/<skill>/scripts/)
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+BASE = f"{ROOT}/claude-for-chrome-runtime-v1"
+MAN = f"{ROOT}/zzz_sessions/onnx-harvest-manifest-runtime-v1.csv"
 
 
 def current_onnx():

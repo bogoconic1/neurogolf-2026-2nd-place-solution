@@ -33,7 +33,7 @@ Flags: `--no-download` (zip only), `--no-zip` (download only). `HF_TOKEN` is rea
 never printed.
 
 The rebuilt artifact:
-- `/Users/geremieyeo/Documents/NeuroGolf-2026/skills-offline.zip`
+- `skills-offline.zip` at repo root (the script resolves the repo from its own location).
 
 Uploading the zip into each project's ChatGPT **Sources** is a manual step the user does by hand (not
 part of this skill).

@@ -15,16 +15,13 @@ import shutil
 import sys
 from collections import Counter
 
-BASE = os.path.expanduser("~/Documents/NeuroGolf-2026/claude-for-chrome-convert-to-0m-einsum-v1")
-STATE = os.path.expanduser(
-    "~/Documents/NeuroGolf-2026/auto_submit_onnx_state_claude_for_chrome_convert_to_0m_einsum_v1.json"
-)
-MAN = os.path.expanduser(
-    "~/Documents/NeuroGolf-2026/zzz_sessions/onnx-harvest-manifest-convert-to-0m-einsum-v1.csv"
-)
+# repo root = four levels above this script (.../<root>/.claude/skills/<skill>/scripts/)
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+BASE = f"{ROOT}/claude-for-chrome-convert-to-0m-einsum-v1"
+STATE = f"{ROOT}/auto_submit_onnx_state_claude_for_chrome_convert_to_0m_einsum_v1.json"
+MAN = f"{ROOT}/zzz_sessions/onnx-harvest-manifest-convert-to-0m-einsum-v1.csv"
 LOGS = [
-    os.path.expanduser(f"~/Documents/NeuroGolf-2026/zzz_sessions/convert-to-0m-einsum-v1-submit-{k}.log")
-    for k in ("safe", "unsafe")
+    f"{ROOT}/zzz_sessions/convert-to-0m-einsum-v1-submit-{k}.log" for k in ("safe", "unsafe")
 ]
 
 ROUTE = {

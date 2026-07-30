@@ -1,0 +1,6 @@
+# compress-einsum-v1 tasklist — set 2026-07-29 (Pro Extended; COMPRESS_EINSUM_STARTER.txt playbook)
+# champ metadata from skills-offline/solutions_py/*.py; memory=0 => score = 25 - ln(params)
+# 10 rounds each. Target +1.0 (params -> params/e) but ANY lower-p win counts.
+# live champion (board_total.py, 2026-07-29) is the download gate; solutions_py m/p may be staler.
+task380  # live champ=20.9225 | solutions_py score=20.922463 m=55 p=4 
+task381  # live champ=20.6180 | solutions_py score=20.617973 m=0 p=80 

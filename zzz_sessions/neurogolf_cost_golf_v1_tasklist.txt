@@ -1,4 +1,104 @@
-# cost-golf-v1 tasklist (5.6 Sol Pro; COST_GOLF_STARTER.txt playbook)
-# One taskNNN per line. Any task is valid — the champion may be any op family.
-# Optional trailing comment: live champ score and the champion's m/p from
-# skills-offline/solutions_py/taskNNN.py. Beat = memory+params < champion cost.
+# cost-golf-v1 tasklist — set 2026-07-30 (5.6 Sol Pro; COST_GOLF_STARTER.txt playbook)
+# scope: tasks 001-100 whose live champion score < 25 (task053/067/087 are already 25.0000 -> excluded)
+# One taskNNN per line. Any task is valid — the champion may be any op family and so may the candidate.
+# Trailing comment: live champ score (board_total.py, 2026-07-30) and the champion's m/p from
+# skills-offline/solutions_py/taskNNN.py. Beat = memory+params < champion cost; score = 25-ln(memory+params).
+# 10 rounds each. Target +1.0 (cost -> cost/e) but ANY lower-cost win counts.
+# live champion is the download gate; solutions_py m/p may be staler.
+task001  # live champ=20.6959 (cost=74) -- gate: m+p < 74 | solutions_py m=0 p=74
+task002  # live champ=19.3232 (cost=292) -- gate: m+p < 292 | solutions_py m=170 p=122
+task003  # live champ=20.7515 (cost=70) -- gate: m+p < 70 | solutions_py m=0 p=70
+task004  # live champ=20.2638 (cost=114) -- gate: m+p < 114 | solutions_py m=0 p=114
+task005  # live champ=18.5464 (cost=635) -- gate: m+p < 635 | solutions_py m=44 p=591
+task006  # live champ=21.3111 (cost=40) -- gate: m+p < 40 | solutions_py m=0 p=40
+task007  # live champ=20.9057 (cost=60) -- gate: m+p < 60 | solutions_py m=0 p=60
+task008  # live champ=20.0442 (cost=142) -- gate: m+p < 142 | solutions_py m=26 p=116
+task009  # live champ=19.2764 (cost=306) -- gate: m+p < 306 | solutions_py m=0 p=306
+task010  # live champ=22.0043 (cost=20) -- gate: m+p < 20 | solutions_py m=0 p=20
+task011  # live champ=20.2995 (cost=110) -- gate: m+p < 110 | solutions_py m=0 p=110
+task012  # live champ=19.3942 (cost=272) -- gate: m+p < 272 | solutions_py m=0 p=272
+task013  # live champ=19.2830 (cost=304) -- gate: m+p < 304 | solutions_py m=291 p=13
+task014  # live champ=19.1711 (cost=340) -- gate: m+p < 340 | solutions_py m=76 p=264
+task015  # live champ=20.5227 (cost=88) -- gate: m+p < 88 | solutions_py m=0 p=88
+task016  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task017  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task018  # live champ=18.5751 (cost=617) -- gate: m+p < 617 | solutions_py m=154 p=463
+task019  # live champ=18.8367 (cost=475) -- gate: m+p < 475 | solutions_py m=369 p=106
+task020  # live champ=20.0727 (cost=138) -- gate: m+p < 138 | solutions_py m=44 p=94
+task021  # live champ=21.7419 (cost=26) -- gate: m+p < 26 | solutions_py m=24 p=2
+task022  # live champ=20.1097 (cost=133) -- gate: m+p < 133 | solutions_py m=22 p=111
+task023  # live champ=19.4587 (cost=255) -- gate: m+p < 255 | solutions_py m=86 p=169
+task024  # live champ=21.5988 (cost=30) -- gate: m+p < 30 | solutions_py m=0 p=30
+task025  # live champ=18.6064 (cost=598) -- gate: m+p < 598 | solutions_py STALER: m=0 p=619 cost=619 (25-ln=18.5719)
+task026  # live champ=21.3111 (cost=40) -- gate: m+p < 40 | solutions_py m=0 p=40
+task027  # live champ=20.5227 (cost=88) -- gate: m+p < 88 | solutions_py m=0 p=88
+task028  # live champ=21.5988 (cost=30) -- gate: m+p < 30 | solutions_py STALER: m=0 p=60 cost=60 (25-ln=20.9057)
+task029  # live champ=19.0838 (cost=371) -- gate: m+p < 371 | solutions_py m=106 p=265
+task030  # live champ=20.7515 (cost=70) -- gate: m+p < 70 | solutions_py m=0 p=70
+task031  # live champ=19.8941 (cost=165) -- gate: m+p < 165 | solutions_py m=32 p=133
+task032  # live champ=20.7515 (cost=70) -- gate: m+p < 70 | solutions_py m=0 p=70
+task033  # live champ=20.5933 (cost=82) -- gate: m+p < 82 | solutions_py m=0 p=82
+task034  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task035  # live champ=20.0800 (cost=137) -- gate: m+p < 137 | solutions_py m=16 p=121
+task036  # live champ=20.2378 (cost=117) -- gate: m+p < 117 | solutions_py m=108 p=9
+task037  # live champ=19.3164 (cost=294) -- gate: m+p < 294 | solutions_py m=0 p=294
+task038  # live champ=21.9090 (cost=22) -- gate: m+p < 22 | solutions_py m=6 p=16
+task039  # live champ=20.3179 (cost=108) -- gate: m+p < 108 | solutions_py m=26 p=82
+task040  # live champ=20.9057 (cost=60) -- gate: m+p < 60 | solutions_py m=0 p=60
+task041  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task042  # live champ=19.9696 (cost=153) -- gate: m+p < 153 | solutions_py m=62 p=91
+task043  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task044  # live champ=19.1056 (cost=363) -- gate: m+p < 363 | solutions_py m=90 p=273
+task045  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task046  # live champ=19.5069 (cost=243) -- gate: m+p < 243 | solutions_py m=182 p=61
+task047  # live champ=22.0043 (cost=20) -- gate: m+p < 20 | solutions_py m=0 p=20
+task048  # live champ=22.4351 (cost=13) -- gate: m+p < 13 | solutions_py m=2 p=11
+task049  # live champ=20.9569 (cost=57) -- gate: m+p < 57 | solutions_py m=54 p=3
+task050  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task051  # live champ=19.9894 (cost=150) -- gate: m+p < 150 | solutions_py m=56 p=94
+task052  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task054  # live champ=17.8763 (cost=1241) -- gate: m+p < 1241 | solutions_py m=1150 p=91
+task055  # live champ=19.6155 (cost=218) -- gate: m+p < 218 | solutions_py m=0 p=218
+task056  # live champ=22.1668 (cost=17) -- gate: m+p < 17 | solutions_py m=16 p=1
+task057  # live champ=20.7953 (cost=67) -- gate: m+p < 67 | solutions_py m=58 p=9
+task058  # live champ=20.7515 (cost=70) -- gate: m+p < 70 | solutions_py m=0 p=70
+task059  # live champ=20.4782 (cost=92) -- gate: m+p < 92 | solutions_py m=8 p=84
+task060  # live champ=20.5002 (cost=90) -- gate: m+p < 90 | solutions_py m=0 p=90
+task061  # live champ=22.6974 (cost=10) -- gate: m+p < 10 | solutions_py m=0 p=10
+task062  # live champ=19.6819 (cost=204) -- gate: m+p < 204 | solutions_py m=111 p=93
+task063  # live champ=22.0043 (cost=20) -- gate: m+p < 20 | solutions_py m=0 p=20
+task064  # live champ=19.8525 (cost=172) -- gate: m+p < 172 | solutions_py m=104 p=68
+task065  # live champ=20.1637 (cost=126) -- gate: m+p < 126 | solutions_py m=121 p=5
+task066  # live champ=19.4825 (cost=249) -- gate: m+p < 249 | solutions_py m=108 p=141
+task068  # live champ=20.0028 (cost=148) -- gate: m+p < 148 | solutions_py m=32 p=116
+task069  # live champ=18.8623 (cost=463) -- gate: m+p < 463 | solutions_py m=374 p=89
+task070  # live champ=21.5035 (cost=33) -- gate: m+p < 33 | solutions_py m=0 p=33
+task071  # live champ=19.6868 (cost=203) -- gate: m+p < 203 | solutions_py m=168 p=35
+task072  # live champ=21.3111 (cost=40) -- gate: m+p < 40 | solutions_py m=0 p=40
+task073  # live champ=22.2274 (cost=16) -- gate: m+p < 16 | solutions_py m=0 p=16
+task074  # live champ=20.5227 (cost=88) -- gate: m+p < 88 | solutions_py STALER: m=0 p=108 cost=108 (25-ln=20.3179)
+task075  # live champ=19.6625 (cost=208) -- gate: m+p < 208 | solutions_py m=0 p=208
+task076  # live champ=19.0598 (cost=380) -- gate: m+p < 380 | solutions_py m=214 p=166
+task077  # live champ=19.3405 (cost=287) -- gate: m+p < 287 | solutions_py m=166 p=121
+task078  # live champ=21.0880 (cost=50) -- gate: m+p < 50 | solutions_py m=0 p=50
+task079  # live champ=20.9225 (cost=59) -- gate: m+p < 59 | solutions_py m=55 p=4
+task080  # live champ=19.0468 (cost=385) -- gate: m+p < 385 | solutions_py STALER: m=184 p=204 cost=388 (25-ln=19.0390)
+task081  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task082  # live champ=21.9555 (cost=21) -- gate: m+p < 21 | solutions_py m=0 p=21
+task083  # live champ=20.8729 (cost=62) -- gate: m+p < 62 | solutions_py m=0 p=62
+task084  # live champ=20.4782 (cost=92) -- gate: m+p < 92 | solutions_py m=0 p=92
+task085  # live champ=20.9057 (cost=60) -- gate: m+p < 60 | solutions_py m=0 p=60
+task086  # live champ=19.7168 (cost=197) -- gate: m+p < 197 | solutions_py m=0 p=197
+task088  # live champ=19.2506 (cost=314) -- gate: m+p < 314 | solutions_py m=174 p=140
+task089  # live champ=18.8179 (cost=484) -- gate: m+p < 484 | solutions_py m=0 p=484
+task090  # live champ=20.0947 (cost=135) -- gate: m+p < 135 | solutions_py m=46 p=89
+task091  # live champ=19.2996 (cost=299) -- gate: m+p < 299 | solutions_py m=86 p=213
+task092  # live champ=19.0919 (cost=368) -- gate: m+p < 368 | solutions_py m=0 p=368
+task093  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task094  # live champ=20.3750 (cost=102) -- gate: m+p < 102 | solutions_py m=0 p=102
+task095  # live champ=20.6180 (cost=80) -- gate: m+p < 80 | solutions_py m=0 p=80
+task096  # live champ=19.3652 (cost=280) -- gate: m+p < 280 | solutions_py m=160 p=120
+task097  # live champ=20.3948 (cost=100) -- gate: m+p < 100 | solutions_py m=0 p=100
+task098  # live champ=21.3891 (cost=37) -- gate: m+p < 37 | solutions_py m=0 p=37
+task099  # live champ=19.7796 (cost=185) -- gate: m+p < 185 | solutions_py m=0 p=185
+task100  # live champ=21.9555 (cost=21) -- gate: m+p < 21 | solutions_py m=20 p=1

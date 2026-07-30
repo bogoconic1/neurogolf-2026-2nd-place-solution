@@ -35,6 +35,11 @@ never printed.
 The rebuilt artifact:
 - `skills-offline.zip` at repo root (the script resolves the repo from its own location).
 
+The zip archives the whole `skills-offline/` tree, so `skills-offline/wheels/` (the offline PyPI
+wheelhouse — the sandbox has no network, see its README) rides along automatically and adds ~61 MB.
+Nothing to do here; just don't prune the folder to shrink the bundle, or every session loses
+`onnx`/`onnxruntime`.
+
 Uploading the zip into each project's ChatGPT **Sources** is a manual step the user does by hand (not
 part of this skill).
 
@@ -47,5 +52,6 @@ Re-running is a cheap no-op (idempotent).
 
 - `ls -la skills-offline.zip` — freshly rebuilt (recent mtime).
 - `unzip -l skills-offline.zip | grep -c solutions_py/task` — the day's champion builders (400) are inside.
+- `unzip -l skills-offline.zip | grep -c 'wheels/.*\.whl'` — the offline wheelhouse (12 wheels) is inside.
 - KAGGLE-line sum spot-check: `python -c "import glob,re;print(round(sum(float(re.search(r\"'score':\s*([0-9.]+)\",open(f).read()).group(1)) for f in glob.glob('skills-offline/solutions_py/task*.py')),4))"`
   should match the live board `overall_score`.

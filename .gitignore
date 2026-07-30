@@ -219,3 +219,7 @@ __marimo__/
 
 skills-offline.zip
 .DS_Store
+
+# NeuroGolf offline wheelhouse — the ChatGPT sandbox has no PyPI access, so these wheels
+# must ship inside skills-offline.zip. Overrides the generic "wheels/" rule above.
+!skills-offline/wheels/
